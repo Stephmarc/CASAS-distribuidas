@@ -1,0 +1,2 @@
+CREATE TABLE pagos (id BIGSERIAL PRIMARY KEY, orden_id BIGINT NOT NULL, monto NUMERIC(14,2) NOT NULL CHECK (monto > 0), moneda VARCHAR(8) NOT NULL, proveedor VARCHAR(40) NOT NULL, provider_payment_id VARCHAR(120), idempotency_key VARCHAR(120) NOT NULL UNIQUE, estado VARCHAR(30) NOT NULL, created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL);
+CREATE INDEX idx_pagos_orden ON pagos(orden_id);

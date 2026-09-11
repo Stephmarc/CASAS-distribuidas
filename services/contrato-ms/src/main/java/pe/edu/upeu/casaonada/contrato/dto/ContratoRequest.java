@@ -1,0 +1,3 @@
+package pe.edu.upeu.casaonada.contrato.dto;
+import java.time.*; import java.math.BigDecimal; import pe.edu.upeu.casaonada.contrato.domain.*;
+public record ContratoRequest(@jakarta.validation.constraints.NotNull Long ordenId, @jakarta.validation.constraints.NotNull Long clienteId, @jakarta.validation.constraints.NotNull Long propiedadId, @jakarta.validation.constraints.NotNull TipoContrato tipo, @jakarta.validation.constraints.NotNull OffsetDateTime fechaInicio, OffsetDateTime fechaFin, @jakarta.validation.constraints.NotNull @jakarta.validation.constraints.PositiveOrZero BigDecimal monto, @jakarta.validation.constraints.NotNull Integer version, @jakarta.validation.constraints.NotNull EstadoContrato estado) {}

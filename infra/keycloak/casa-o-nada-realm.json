@@ -1,0 +1,34 @@
+{
+  "realm": "casa-o-nada",
+  "enabled": true,
+  "displayName": "CASA O NADA",
+  "roles": {
+    "realm": [
+      {
+        "name": "CLIENTE"
+      },
+      {
+        "name": "AGENTE"
+      },
+      {
+        "name": "ADMIN"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "casa-o-nada-web",
+      "name": "CASA O NADA Web",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": [
+        "http://localhost:*/*"
+      ],
+      "webOrigins": [
+        "*"
+      ]
+    }
+  ]
+}
