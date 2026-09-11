@@ -1,0 +1,3 @@
+package pe.edu.upeu.casaonada.cliente.dto;
+import java.time.*; import java.math.BigDecimal; import pe.edu.upeu.casaonada.cliente.domain.*;
+public record ClienteRequest(String keycloakUserId, @jakarta.validation.constraints.NotBlank String nombres, @jakarta.validation.constraints.NotBlank String apellidos, @jakarta.validation.constraints.NotBlank String email, String telefono, @jakarta.validation.constraints.PositiveOrZero BigDecimal presupuestoMin, @jakarta.validation.constraints.PositiveOrZero BigDecimal presupuestoMax, String ciudadPreferida, String tipoOperacionPreferida, @jakarta.validation.constraints.NotNull EstadoCliente estado) {}
