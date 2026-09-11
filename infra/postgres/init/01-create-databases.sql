@@ -1,0 +1,18 @@
+CREATE USER casa_cliente WITH PASSWORD 'casa_cliente';
+CREATE DATABASE casa_cliente_db OWNER casa_cliente;
+CREATE USER casa_propiedad WITH PASSWORD 'casa_propiedad';
+CREATE DATABASE casa_propiedad_db OWNER casa_propiedad;
+CREATE USER casa_agente WITH PASSWORD 'casa_agente';
+CREATE DATABASE casa_agente_db OWNER casa_agente;
+CREATE USER casa_visita WITH PASSWORD 'casa_visita';
+CREATE DATABASE casa_visita_db OWNER casa_visita;
+CREATE USER casa_reserva WITH PASSWORD 'casa_reserva';
+CREATE DATABASE casa_reserva_db OWNER casa_reserva;
+CREATE USER casa_orden WITH PASSWORD 'casa_orden';
+CREATE DATABASE casa_orden_db OWNER casa_orden;
+CREATE USER casa_pago WITH PASSWORD 'casa_pago';
+CREATE DATABASE casa_pago_db OWNER casa_pago;
+CREATE USER casa_contrato WITH PASSWORD 'casa_contrato';
+CREATE DATABASE casa_contrato_db OWNER casa_contrato;
+CREATE USER casa_notificacion WITH PASSWORD 'casa_notificacion';
+CREATE DATABASE casa_notificacion_db OWNER casa_notificacion;

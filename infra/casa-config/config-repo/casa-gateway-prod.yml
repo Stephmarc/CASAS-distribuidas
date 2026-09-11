@@ -1,0 +1,52 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+                - id: casa-cliente-ms
+                  uri: lb://casa-cliente-ms
+                  predicates:
+                    - Path=/api/v1/clientes/**
+                - id: casa-propiedad-ms
+                  uri: lb://casa-propiedad-ms
+                  predicates:
+                    - Path=/api/v1/propiedades/**
+                - id: casa-agente-ms
+                  uri: lb://casa-agente-ms
+                  predicates:
+                    - Path=/api/v1/agentes/**
+                - id: casa-visita-ms
+                  uri: lb://casa-visita-ms
+                  predicates:
+                    - Path=/api/v1/visitas/**
+                - id: casa-reserva-ms
+                  uri: lb://casa-reserva-ms
+                  predicates:
+                    - Path=/api/v1/reservas/**
+                - id: casa-orden-ms
+                  uri: lb://casa-orden-ms
+                  predicates:
+                    - Path=/api/v1/ordenes/**
+                - id: casa-pago-ms
+                  uri: lb://casa-pago-ms
+                  predicates:
+                    - Path=/api/v1/pagos/**
+                - id: casa-contrato-ms
+                  uri: lb://casa-contrato-ms
+                  predicates:
+                    - Path=/api/v1/contratos/**
+                - id: casa-notificacion-ms
+                  uri: lb://casa-notificacion-ms
+                  predicates:
+                    - Path=/api/v1/notificaciones/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://casa-eureka:8761/eureka/
+management:
+  endpoint:
+    health:
+      show-details: never
