@@ -1,0 +1,3 @@
+CREATE TABLE ordenes (id BIGSERIAL PRIMARY KEY, cliente_id BIGINT NOT NULL, reserva_id BIGINT, tipo_operacion VARCHAR(20) NOT NULL, moneda VARCHAR(8) NOT NULL, subtotal NUMERIC(14,2) NOT NULL, total NUMERIC(14,2) NOT NULL, monto_adelanto NUMERIC(14,2) NOT NULL, estado VARCHAR(30) NOT NULL, created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL);
+CREATE TABLE detalle_orden (id BIGSERIAL PRIMARY KEY, orden_id BIGINT NOT NULL REFERENCES ordenes(id) ON DELETE CASCADE, propiedad_id BIGINT NOT NULL, concepto VARCHAR(160) NOT NULL, precio_acordado NUMERIC(14,2) NOT NULL);
+CREATE INDEX idx_detalle_orden_orden ON detalle_orden(orden_id);
