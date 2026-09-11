@@ -1,0 +1,10 @@
+CREATE TABLE notificaciones (
+ id BIGSERIAL PRIMARY KEY,
+ destinatario VARCHAR(180) NOT NULL,
+ tipo VARCHAR(30) NOT NULL,
+ asunto VARCHAR(180) NOT NULL,
+ contenido VARCHAR(3000) NOT NULL,
+ estado VARCHAR(20) NOT NULL,
+ created_at TIMESTAMPTZ NOT NULL,
+ updated_at TIMESTAMPTZ NOT NULL
+);
