@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pe.edu.upeu.casaonada</groupId>
+  <artifactId>casa-o-nada</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>CASA O NADA</name>
+  <modules>
+    <module>services/cliente-ms</module>
+    <module>services/propiedad-ms</module>
+    <module>services/agente-ms</module>
+    <module>services/visita-ms</module>
+    <module>services/reserva-ms</module>
+    <module>services/orden-ms</module>
+    <module>services/pago-ms</module>
+    <module>services/contrato-ms</module>
+    <module>services/notificacion-ms</module>
+    <module>infra/casa-config</module>
+    <module>infra/casa-eureka</module>
+    <module>infra/casa-gateway</module>
+  </modules>
+</project>
