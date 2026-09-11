@@ -1,0 +1,8 @@
+package pe.edu.upeu.casaonada.contrato.service;
+import pe.edu.upeu.casaonada.contrato.domain.*; import pe.edu.upeu.casaonada.contrato.dto.*; import pe.edu.upeu.casaonada.contrato.exception.*; import pe.edu.upeu.casaonada.contrato.mapper.ContratoMapper; import pe.edu.upeu.casaonada.contrato.repository.ContratoRepository; import org.springframework.stereotype.Service; import org.springframework.transaction.annotation.Transactional; import java.util.*;
+@Service public class ContratoService { private final ContratoRepository repo; private final ContratoMapper mapper; public ContratoService(ContratoRepository r,ContratoMapper m){repo=r;mapper=m;}
+ @Transactional public ContratoResponse crear(ContratoRequest r){ if(repo.existsByOrdenId(r.ordenId())) throw new BusinessRuleException("La orden ya tiene un contrato asociado"); if(r.fechaFin()!=null && r.fechaFin().isBefore(r.fechaInicio())) throw new BusinessRuleException("La fecha fin no puede ser anterior al inicio"); return mapper.toResponse(repo.save(mapper.toEntity(r))); }
+ @Transactional(readOnly=true) public List<ContratoResponse> listar(){return repo.findAll().stream().map(mapper::toResponse).toList();} @Transactional(readOnly=true) public ContratoResponse buscar(Long id){return mapper.toResponse(entidad(id));}
+ @Transactional public ContratoResponse actualizar(Long id,ContratoRequest r){Contrato e=entidad(id);mapper.update(e,r);return mapper.toResponse(repo.save(e));} @Transactional public ContratoResponse cambiarEstado(Long id,EstadoContrato estado){Contrato e=entidad(id);e.setEstado(estado);return mapper.toResponse(repo.save(e));}
+ private Contrato entidad(Long id){return repo.findById(id).orElseThrow(()->new ResourceNotFoundException("Contrato no encontrado: "+id));}
+}
