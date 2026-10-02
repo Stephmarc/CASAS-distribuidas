@@ -1,0 +1,1140 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Unidad II - Grupo 9">
+      
+      
+        <meta name="author" content="Grupo 9">
+      
+      
+      
+        <link rel="prev" href="../tarea-1-feign-circuit-breaker/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>S07 · Seguridad distribuida con JWT - Evidencias - Sistemas Distribuidos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#s07-seguridad-distribuida-y-control-de-acceso" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Evidencias - Sistemas Distribuidos" class="md-header__button md-logo" aria-label="Evidencias - Sistemas Distribuidos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Evidencias - Sistemas Distribuidos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              S07 · Seguridad distribuida con JWT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Stephmarc/CASAS-distribuidas" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Stephmarc/CASAS-distribuidas
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Evidencias - Sistemas Distribuidos" class="md-nav__button md-logo" aria-label="Evidencias - Sistemas Distribuidos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Evidencias - Sistemas Distribuidos
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Stephmarc/CASAS-distribuidas" title="Ir al repositorio" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Stephmarc/CASAS-distribuidas
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    II. Sistema de distribución robusto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    II. Sistema de distribución robusto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tarea-1-feign-circuit-breaker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S06 · Feign y Circuit Breaker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S07 · Seguridad distribuida con JWT
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S07 · Seguridad distribuida con JWT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tarea-2-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarea 2 — JWT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea 2 — JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datos-de-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datos de la actividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-resumen-de-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Resumen de la actividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-centralizada-del-resource-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuración centralizada del Resource Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuración centralizada del Resource Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-01-configuracion-jwt-de-propiedad-ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 01 · Configuración JWT de propiedad-ms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-infraestructura-protegida-y-saludable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Infraestructura protegida y saludable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Infraestructura protegida y saludable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-02-gateway-en-estado-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 02 · Gateway en estado UP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-03-microservicios-disponibles-en-eureka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 03 · Microservicios disponibles en Eureka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-obtencion-del-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Obtención del JWT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pruebas-de-autenticacion-y-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pruebas de autenticación y autorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Pruebas de autenticación y autorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-http-401-sin-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 HTTP 401 — sin autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-http-403-autenticado-pero-sin-rol-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 HTTP 403 — autenticado pero sin rol suficiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-http-201-operacion-autorizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 HTTP 201 — operación autorizada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-diferencia-entre-401-y-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Diferencia entre 401 y 403
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reproduccion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Reproducción técnica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-reflexion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Reflexión técnica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-preguntas-de-defensa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Preguntas de defensa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tarea-2-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarea 2 — JWT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tarea 2 — JWT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datos-de-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datos de la actividad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-resumen-de-la-actividad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Resumen de la actividad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitectura-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Arquitectura de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-configuracion-centralizada-del-resource-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Configuración centralizada del Resource Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Configuración centralizada del Resource Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-01-configuracion-jwt-de-propiedad-ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 01 · Configuración JWT de propiedad-ms
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-infraestructura-protegida-y-saludable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Infraestructura protegida y saludable
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Infraestructura protegida y saludable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-02-gateway-en-estado-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 02 · Gateway en estado UP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidencia-03-microservicios-disponibles-en-eureka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidencia 03 · Microservicios disponibles en Eureka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-obtencion-del-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Obtención del JWT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pruebas-de-autenticacion-y-autorizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Pruebas de autenticación y autorización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Pruebas de autenticación y autorización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-http-401-sin-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 HTTP 401 — sin autenticación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-http-403-autenticado-pero-sin-rol-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 HTTP 403 — autenticado pero sin rol suficiente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-http-201-operacion-autorizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 HTTP 201 — operación autorizada
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-diferencia-entre-401-y-403" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Diferencia entre 401 y 403
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reproduccion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Reproducción técnica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-reflexion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Reflexión técnica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-preguntas-de-defensa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Preguntas de defensa
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="s07-seguridad-distribuida-y-control-de-acceso">S07 · Seguridad distribuida y control de acceso<a class="headerlink" href="#s07-seguridad-distribuida-y-control-de-acceso" title="Permanent link">&para;</a></h1>
+<h2 id="tarea-2-jwt">Tarea 2 — JWT<a class="headerlink" href="#tarea-2-jwt" title="Permanent link">&para;</a></h2>
+<h3 id="datos-de-la-actividad">Datos de la actividad<a class="headerlink" href="#datos-de-la-actividad" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Información</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grupo</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Ciclo</td>
+<td>V</td>
+</tr>
+<tr>
+<td>Integrantes</td>
+<td>Alanguia Japura Miguel Angel · Jannys Graciela Navarro Acrota · Olger Meza Rupa</td>
+</tr>
+<tr>
+<td>Proyecto</td>
+<td>CASA O NADA</td>
+</tr>
+<tr>
+<td>Tema</td>
+<td>JWT + Keycloak + Spring Security</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-resumen-de-la-actividad">1. Resumen de la actividad<a class="headerlink" href="#1-resumen-de-la-actividad" title="Permanent link">&para;</a></h2>
+<p>La segunda tarea protege la arquitectura distribuida mediante <strong>JWT</strong>. Keycloak actúa como proveedor de identidad y emite tokens firmados. Los servicios validan el emisor y las claves del token mediante Spring Security OAuth2 Resource Server. Los roles incluidos en el JWT permiten diferenciar las operaciones autorizadas para <code>CLIENTE</code> y <code>AGENTE</code>.</p>
+<h2 id="2-arquitectura-de-seguridad">2. Arquitectura de seguridad<a class="headerlink" href="#2-arquitectura-de-seguridad" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Usuario
+  │ credenciales
+  ▼
+Keycloak
+  │ JWT firmado
+  ▼
+Gateway / microservicios
+  │ valida issuer + firma + roles
+  ├── autorizado → recurso
+  └── no autorizado → 401 / 403
+</code></pre></div>
+<h2 id="3-configuracion-centralizada-del-resource-server">3. Configuración centralizada del Resource Server<a class="headerlink" href="#3-configuracion-centralizada-del-resource-server" title="Permanent link">&para;</a></h2>
+<p>La configuración de seguridad se obtiene desde Config Server. En ella se definen el <code>issuer-uri</code> y el <code>jwk-set-uri</code> del realm <code>casa-o-nada</code>.</p>
+<h4 id="evidencia-01-configuracion-jwt-de-propiedad-ms">Evidencia 01 · Configuración JWT de propiedad-ms<a class="headerlink" href="#evidencia-01-configuracion-jwt-de-propiedad-ms" title="Permanent link">&para;</a></h4>
+<div class="evidence">
+<p><img alt="Configuración centralizada de propiedad-ms y JWT" src="../assets/evidencias/03-config-jwt.png" /></p>
+<p class="caption"><strong>Descripción.</strong> La respuesta de Config Server para <code>casa-propiedad-ms/dev</code> incluye <code>spring.security.oauth2.resourceserver.jwt.issuer-uri</code> y <code>jwk-set-uri</code> apuntando al realm <code>casa-o-nada</code> de Keycloak. También se observan la configuración de Eureka, PostgreSQL y los endpoints de Actuator.</p>
+</div>
+<h2 id="4-infraestructura-protegida-y-saludable">4. Infraestructura protegida y saludable<a class="headerlink" href="#4-infraestructura-protegida-y-saludable" title="Permanent link">&para;</a></h2>
+<p>La seguridad se integró sin perder observabilidad ni descubrimiento de servicios.</p>
+<h4 id="evidencia-02-gateway-en-estado-up">Evidencia 02 · Gateway en estado UP<a class="headerlink" href="#evidencia-02-gateway-en-estado-up" title="Permanent link">&para;</a></h4>
+<div class="evidence">
+<p><img alt="Gateway saludable" src="../assets/evidencias/02-gateway-health.png" /></p>
+<p class="caption"><strong>Descripción.</strong> El endpoint de Actuator del Gateway devuelve <strong>UP</strong> y muestra los servicios descubiertos por Eureka. Esto confirma que la incorporación de seguridad no impide el funcionamiento de la infraestructura distribuida.</p>
+</div>
+<h4 id="evidencia-03-microservicios-disponibles-en-eureka">Evidencia 03 · Microservicios disponibles en Eureka<a class="headerlink" href="#evidencia-03-microservicios-disponibles-en-eureka" title="Permanent link">&para;</a></h4>
+<div class="evidence">
+<p><img alt="Servicios registrados en Eureka" src="../assets/evidencias/01-eureka-up.png" /></p>
+<p class="caption"><strong>Descripción.</strong> Eureka mantiene registrados Gateway, Propiedad y Reserva en estado <strong>UP</strong>. Esta evidencia complementa la prueba de seguridad al confirmar que las solicitudes protegidas se ejecutan sobre servicios activos.</p>
+</div>
+<h2 id="5-obtencion-del-jwt">5. Obtención del JWT<a class="headerlink" href="#5-obtencion-del-jwt" title="Permanent link">&para;</a></h2>
+<p>Se solicitó un token al endpoint OpenID Connect de Keycloak utilizando el cliente <code>casa-o-nada-web</code>. El token obtenido corresponde al usuario <code>cliente</code> y contiene el rol <code>CLIENTE</code>.</p>
+<div class="highlight"><pre><span></span><code>username: cliente
+role: CLIENTE
+issuer: http://localhost:18090/realms/casa-o-nada
+</code></pre></div>
+<p>La prueba automatizada leyó correctamente la identidad y los roles del JWT y devolvió <strong>HTTP 200</strong>.</p>
+<h2 id="6-pruebas-de-autenticacion-y-autorizacion">6. Pruebas de autenticación y autorización<a class="headerlink" href="#6-pruebas-de-autenticacion-y-autorizacion" title="Permanent link">&para;</a></h2>
+<p>El script <code>test-s06-s07.ps1</code> comprobó distintos escenarios de seguridad.</p>
+<table>
+<thead>
+<tr>
+<th>Prueba</th>
+<th style="text-align: right;">Resultado</th>
+<th>Interpretación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identidad y roles obtenidos desde JWT</td>
+<td style="text-align: right;"><code>200</code></td>
+<td>Token válido</td>
+</tr>
+<tr>
+<td>Recurso protegido sin token</td>
+<td style="text-align: right;"><code>401</code></td>
+<td>Falta autenticación</td>
+</tr>
+<tr>
+<td><code>CLIENTE</code> intenta crear propiedad</td>
+<td style="text-align: right;"><code>403</code></td>
+<td>Autenticado, pero sin permiso</td>
+</tr>
+<tr>
+<td><code>AGENTE</code> crea una propiedad</td>
+<td style="text-align: right;"><code>201</code></td>
+<td>Rol autorizado</td>
+</tr>
+</tbody>
+</table>
+<h3 id="61-http-401-sin-autenticacion">6.1 HTTP 401 — sin autenticación<a class="headerlink" href="#61-http-401-sin-autenticacion" title="Permanent link">&para;</a></h3>
+<p>Una petición a un recurso protegido sin enviar <code>Authorization: Bearer &lt;token&gt;</code> fue rechazada con <code>401</code>. Esto demuestra que el recurso no puede utilizarse de forma anónima.</p>
+<h3 id="62-http-403-autenticado-pero-sin-rol-suficiente">6.2 HTTP 403 — autenticado pero sin rol suficiente<a class="headerlink" href="#62-http-403-autenticado-pero-sin-rol-suficiente" title="Permanent link">&para;</a></h3>
+<p>El usuario <code>cliente</code> obtuvo un JWT válido, pero al intentar crear una propiedad recibió <code>403</code>. El sistema reconoce al usuario, pero el rol <code>CLIENTE</code> no posee autorización para esa operación.</p>
+<h3 id="63-http-201-operacion-autorizada">6.3 HTTP 201 — operación autorizada<a class="headerlink" href="#63-http-201-operacion-autorizada" title="Permanent link">&para;</a></h3>
+<p>Con un token correspondiente al rol <code>AGENTE</code>, la creación de una propiedad fue aceptada y devolvió <code>201</code>. La propiedad de prueba quedó registrada con datos como título, ciudad, precio, habitaciones y agente asociado.</p>
+<h2 id="7-diferencia-entre-401-y-403">7. Diferencia entre 401 y 403<a class="headerlink" href="#7-diferencia-entre-401-y-403" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>401 Unauthorized:</strong> la solicitud no presenta una autenticación válida.</li>
+<li><strong>403 Forbidden:</strong> el usuario sí está autenticado, pero no tiene el rol o permiso necesario.</li>
+</ul>
+<p>Esta diferencia fue comprobada directamente durante las pruebas.</p>
+<h2 id="8-reproduccion-tecnica">8. Reproducción técnica<a class="headerlink" href="#8-reproduccion-tecnica" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Levantar Keycloak en <code>localhost:18090</code>.</li>
+<li>Verificar el realm <code>casa-o-nada</code>.</li>
+<li>Levantar Config Server, Eureka, Gateway y microservicios.</li>
+<li>Solicitar un token para el usuario de prueba.</li>
+<li>Ejecutar <code>scripts/test-s06-s07.ps1</code>.</li>
+<li>Verificar <code>200</code> para identidad válida.</li>
+<li>Verificar <code>401</code> al omitir el token.</li>
+<li>Verificar <code>403</code> cuando <code>CLIENTE</code> intenta crear una propiedad.</li>
+<li>Verificar <code>201</code> cuando <code>AGENTE</code> realiza la operación autorizada.</li>
+</ol>
+<h2 id="9-reflexion-tecnica">9. Reflexión técnica<a class="headerlink" href="#9-reflexion-tecnica" title="Permanent link">&para;</a></h2>
+<p>JWT permite que cada petición transporte la identidad y los roles necesarios para tomar decisiones de autorización sin mantener una sesión tradicional en cada microservicio. Keycloak centraliza la identidad y Spring Security valida el token en los componentes protegidos.</p>
+<h2 id="10-preguntas-de-defensa">10. Preguntas de defensa<a class="headerlink" href="#10-preguntas-de-defensa" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Pregunta</th>
+<th>Respuesta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>¿Qué es JWT?</td>
+<td>Un token firmado que transporta información de identidad y autorización.</td>
+</tr>
+<tr>
+<td>¿Quién emite el token?</td>
+<td>Keycloak, desde el realm <code>casa-o-nada</code>.</td>
+</tr>
+<tr>
+<td>¿Qué valida el Resource Server?</td>
+<td>La firma, el emisor, vigencia y datos necesarios del token.</td>
+</tr>
+<tr>
+<td>¿Por qué se obtuvo 401?</td>
+<td>Porque se intentó acceder sin un token válido.</td>
+</tr>
+<tr>
+<td>¿Por qué se obtuvo 403?</td>
+<td>Porque el usuario estaba autenticado, pero su rol no permitía la operación.</td>
+</tr>
+<tr>
+<td>¿Qué demuestra el 201 del AGENTE?</td>
+<td>Que la autorización por rol permitió crear la propiedad.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
