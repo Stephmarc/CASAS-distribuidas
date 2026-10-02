@@ -1,0 +1,8 @@
+.md-grid { max-width: 1440px; }
+.md-typeset h1 { font-weight: 400; }
+.md-typeset h2 { margin-top: 2.2em; }
+.md-typeset h3 { margin-top: 1.7em; }
+.evidence { margin: 1.1rem 0 2rem; }
+.evidence img { display:block; width:100%; max-width:1100px; margin:.7rem auto; border:1px solid rgba(0,0,0,.15); border-radius:4px; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+.caption { max-width:1100px; margin:.5rem auto 0; padding:.75rem 1rem; border-left:4px solid var(--md-primary-fg-color); background:var(--md-code-bg-color); }
+.student-table td:first-child { width:180px; font-weight:600; }

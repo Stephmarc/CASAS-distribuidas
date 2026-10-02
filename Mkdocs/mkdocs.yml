@@ -1,0 +1,39 @@
+site_name: Evidencias - Sistemas Distribuidos
+site_description: Unidad II - Grupo 9
+site_author: Grupo 9
+repo_url: https://github.com/Stephmarc/CASAS-distribuidas
+repo_name: Stephmarc/CASAS-distribuidas
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    primary: indigo
+    accent: indigo
+
+nav:
+  - Inicio: index.md
+  - II. Sistema de distribución robusto:
+      - S06 · Feign y Circuit Breaker: tarea-1-feign-circuit-breaker.md
+      - S07 · Seguridad distribuida con JWT: tarea-2-jwt.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+extra_css:
+  - stylesheets/extra.css
