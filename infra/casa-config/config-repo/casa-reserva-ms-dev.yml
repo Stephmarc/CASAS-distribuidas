@@ -1,0 +1,65 @@
+server:
+  port: 18115
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15440/casa_reserva
+    username: casa
+    password: casa
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:18090/realms/casa-o-nada}
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:18090/realms/casa-o-nada/protocol/openid-connect/certs}
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 1500
+            readTimeout: 2000
+            loggerLevel: basic
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}:${random.value}
+
+app:
+  security:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers,circuitbreakerevents
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      propiedad:
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 4
+        minimumNumberOfCalls: 4
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+

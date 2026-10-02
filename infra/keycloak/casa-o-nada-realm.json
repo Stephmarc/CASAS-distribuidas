@@ -1,34 +1,125 @@
-{
-  "realm": "casa-o-nada",
-  "enabled": true,
-  "displayName": "CASA O NADA",
-  "roles": {
-    "realm": [
-      {
-        "name": "CLIENTE"
-      },
-      {
-        "name": "AGENTE"
-      },
-      {
-        "name": "ADMIN"
-      }
-    ]
-  },
-  "clients": [
-    {
-      "clientId": "casa-o-nada-web",
-      "name": "CASA O NADA Web",
-      "enabled": true,
-      "publicClient": true,
-      "standardFlowEnabled": true,
-      "directAccessGrantsEnabled": true,
-      "redirectUris": [
-        "http://localhost:*/*"
-      ],
-      "webOrigins": [
-        "*"
-      ]
-    }
-  ]
+﻿{
+    "realm":  "casa-o-nada",
+    "enabled":  true,
+    "displayName":  "CASA O NADA",
+    "registrationAllowed":  false,
+    "roles":  {
+                  "realm":  [
+                                {
+                                    "name":  "CLIENTE",
+                                    "description":  "Cliente que consulta propiedades y gestiona sus operaciones"
+                                },
+                                {
+                                    "name":  "AGENTE",
+                                    "description":  "Agente inmobiliario"
+                                },
+                                {
+                                    "name":  "ADMIN",
+                                    "description":  "Administrador del sistema"
+                                }
+                            ]
+              },
+    "clients":  [
+                    {
+                        "clientId":  "casa-o-nada-web",
+                        "name":  "CASA O NADA Web",
+                        "enabled":  true,
+                        "publicClient":  true,
+                        "standardFlowEnabled":  true,
+                        "directAccessGrantsEnabled":  true,
+                        "redirectUris":  [
+                                             "http://localhost:*/*"
+                                         ],
+                        "webOrigins":  [
+                                           "*"
+                                       ],
+                        "protocol":  "openid-connect",
+                        "protocolMappers":  [
+                                                {
+                                                    "name":  "cliente-id",
+                                                    "protocol":  "openid-connect",
+                                                    "protocolMapper":  "oidc-usermodel-attribute-mapper",
+                                                    "consentRequired":  false,
+                                                    "config":  {
+                                                                   "user.attribute":  "cliente_id",
+                                                                   "claim.name":  "cliente_id",
+                                                                   "jsonType.label":  "String",
+                                                                   "id.token.claim":  "true",
+                                                                   "access.token.claim":  "true",
+                                                                   "userinfo.token.claim":  "true"
+                                                               }
+                                                }
+                                            ]
+                    }
+                ],
+    "users":  [
+                  {
+                      "username":  "admin",
+                      "enabled":  true,
+                      "emailVerified":  true,
+                      "firstName":  "Admin",
+                      "lastName":  "CASA O NADA",
+                      "realmRoles":  [
+                                         "ADMIN"
+                                     ],
+                      "credentials":  [
+                                          {
+                                              "type":  "password",
+                                              "value":  "Admin123!",
+                                              "temporary":  false
+                                          }
+                                      ],
+                      "email":  "admin@casa.local",
+                      "requiredActions":  [
+
+                                          ]
+                  },
+                  {
+                      "username":  "agente",
+                      "enabled":  true,
+                      "emailVerified":  true,
+                      "firstName":  "Agente",
+                      "lastName":  "Demo",
+                      "realmRoles":  [
+                                         "AGENTE"
+                                     ],
+                      "credentials":  [
+                                          {
+                                              "type":  "password",
+                                              "value":  "Agente123!",
+                                              "temporary":  false
+                                          }
+                                      ],
+                      "email":  "agente@casa.local",
+                      "requiredActions":  [
+
+                                          ]
+                  },
+                  {
+                      "username":  "cliente",
+                      "enabled":  true,
+                      "emailVerified":  true,
+                      "firstName":  "Cliente",
+                      "lastName":  "Demo",
+                      "realmRoles":  [
+                                         "CLIENTE"
+                                     ],
+                      "credentials":  [
+                                          {
+                                              "type":  "password",
+                                              "value":  "Cliente123!",
+                                              "temporary":  false
+                                          }
+                                      ],
+                      "attributes":  {
+                                         "cliente_id":  [
+                                                            "1"
+                                                        ]
+                                     },
+                      "email":  "cliente@casa.local",
+                      "requiredActions":  [
+
+                                          ]
+                  }
+              ]
 }

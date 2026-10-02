@@ -1,0 +1,44 @@
+server:
+  port: 18111
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15440/casa_propiedad
+    username: casa
+    password: casa
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:18090/realms/casa-o-nada}
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:18090/realms/casa-o-nada/protocol/openid-connect/certs}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}:${random.value}
+
+app:
+  security:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,circuitbreakers,circuitbreakerevents
+  endpoint:
+    health:
+      show-details: always
+

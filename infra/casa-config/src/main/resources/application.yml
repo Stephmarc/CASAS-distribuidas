@@ -1,0 +1,22 @@
+server:
+  port: 18888
+
+spring:
+  application:
+    name: casa-config
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ${CONFIG_REPO:file:./config-repo,file:./infra/casa-config/config-repo}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

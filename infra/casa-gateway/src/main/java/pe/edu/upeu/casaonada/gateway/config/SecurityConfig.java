@@ -1,11 +1,9 @@
-package pe.edu.upeu.casaonada.pago.config;
+package pe.edu.upeu.casaonada.gateway.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,29 +20,38 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Configuration
-@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
-    @ConditionalOnProperty(name = "app.security.enabled", havingValue = "false")
-    SecurityFilterChain openSecurity(HttpSecurity http) throws Exception {
-        return http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                .build();
-    }
-
-    @Bean
-    @ConditionalOnProperty(name = "app.security.enabled", havingValue = "true", matchIfMissing = true)
-    SecurityFilterChain jwtSecurity(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/actuator/health", "/actuator/info", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
+                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
+                        .requestMatchers("/api/v1/auth/me").authenticated()
+
+                        .requestMatchers(HttpMethod.GET, "/api/v1/propiedades/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+                        .requestMatchers("/api/v1/propiedades/**").hasAnyRole("AGENTE", "ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/v1/agentes/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+                        .requestMatchers("/api/v1/agentes/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "/api/v1/visitas/**").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/visitas/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+                        .requestMatchers("/api/v1/visitas/**").hasAnyRole("AGENTE", "ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/v1/reservas/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/reservas/**").hasAnyRole("CLIENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.PATCH, "/api/v1/reservas/**").hasAnyRole("AGENTE", "ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/reservas/**").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.POST, "/api/v1/pagos/**").hasAnyRole("CLIENTE", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/pagos/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/v1/contratos/**").hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
+                        .requestMatchers("/api/v1/contratos/**").hasAnyRole("AGENTE", "ADMIN")
+
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
                 .build();

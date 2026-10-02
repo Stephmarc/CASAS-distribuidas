@@ -1,0 +1,56 @@
+server:
+  port: 18080
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:18090/realms/casa-o-nada}
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:18090/realms/casa-o-nada/protocol/openid-connect/certs}
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: propiedad-ms
+              uri: lb://casa-propiedad-ms
+              predicates:
+                - Path=/api/v1/propiedades/**
+            - id: agente-ms
+              uri: lb://casa-agente-ms
+              predicates:
+                - Path=/api/v1/agentes/**
+            - id: visita-ms
+              uri: lb://casa-visita-ms
+              predicates:
+                - Path=/api/v1/visitas/**
+            - id: reserva-ms
+              uri: lb://casa-reserva-ms
+              predicates:
+                - Path=/api/v1/reservas/**
+            - id: pago-ms
+              uri: lb://casa-pago-ms
+              predicates:
+                - Path=/api/v1/pagos/**
+            - id: contrato-ms
+              uri: lb://casa-contrato-ms
+              predicates:
+                - Path=/api/v1/contratos/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
