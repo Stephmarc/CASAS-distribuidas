@@ -1,0 +1,22 @@
+{
+  "fecha": "2026-10-30T11:56:49.988Z",
+  "consulta": "GET /api/v1/propiedades por Gateway",
+  "status": 200,
+  "propiedad": {
+    "id": 22,
+    "titulo": "Casa de estreno en Juliaca",
+    "descripcion": "Vivienda ficticia para demostración académica. Ambientes luminosos, patio y terraza.",
+    "ciudad": "Juliaca",
+    "direccion": "Urbanización de demostración, lote 10",
+    "precio": 410000,
+    "habitaciones": 3,
+    "banos": 2,
+    "areaM2": 100,
+    "tipoOperacion": "COMPRA",
+    "estado": "DISPONIBLE",
+    "agenteId": 1,
+    "imagenPrincipalUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    "createdAt": "2026-10-30T11:43:33.078774Z",
+    "updatedAt": "2026-10-30T11:43:33.078774Z"
+  }
+}

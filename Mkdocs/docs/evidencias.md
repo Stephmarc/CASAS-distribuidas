@@ -81,3 +81,67 @@ Código subido a `main` (commit de implementación `01060c7`). Backend y Angular
 - [Angular aprobado](https://github.com/Stephmarc/CASAS-distribuidas/actions/runs/41046849797).
 - [MkDocs publicado](https://github.com/Stephmarc/CASAS-distribuidas/actions/runs/41047148163).
 - [Documentación pública](https://stephmarc.github.io/CASAS-distribuidas/).
+
+## Capturas de los requisitos S12 · ejecución final
+
+Las siguientes capturas proceden del Compose de CASAS y la aplicación en sus puertos definitivos el 30/10/2026. Se acompañan de los reportes de las pruebas; una captura por sí sola no reemplaza la demo en vivo.
+
+### Frontend por rol y estados de negocio
+
+Sesión real CLIENTE: operaciones confirmadas y canceladas. La orden 2 corresponde a rechazo de pago en el simulador, comprobado por la prueba integral y los eventos de compensación.
+
+![Cliente y operaciones reales](assets/CASAS-Cliente-Operaciones.jpg)
+
+![Cancelación por pago rechazado](assets/CASAS-Compensacion-Pago.jpg)
+
+### Resiliencia observada
+
+Durante `test-resilience.ps1`, propiedad-ms cae realmente: el panel muestra 0 para ese servicio mientras los restantes siguen disponibles. Después se recupera; el reporte verifica CLOSED → OPEN → HALF_OPEN → CLOSED.
+
+![Caída real de propiedad](assets/CASAS-Grafana-Fallo.jpg)
+
+![Recuperación de disponibilidad](assets/CASAS-Grafana-Recuperado.jpg)
+
+### Evento y reprocesamiento
+
+Kafka UI muestra CREAR_CONTRATO reenviado con el mismo eventId `ab4dfc2b-0ae7-423f-9393-e75fb0ece522`. El [reporte del consumidor](assets/reprocesamiento-kafka.json) comprueba un contrato antes y después y `duplicate=true`.
+
+![Evento real de Kafka](assets/CASAS-Kafka-Evento.jpg)
+
+### Observabilidad correlacionada
+
+Grafana consulta Loki con el trace `07da5641-e729-402d-a640-14a64108827e`. Se ven publicación y consumo de eventos en servicios distintos. El filtro usa `{job="casas"}` y conserva el rango horario del caso.
+
+![Misma operación entre servicios](assets/CASAS-Grafana-Trace-Actual.jpg)
+
+### Backend iniciado
+
+Eureka registra nueve microservicios y Gateway en UP. El aviso de self-preservation desactivado corresponde a la configuración local de laboratorio, no a una política recomendada de producción.
+
+![Backend real en Eureka](assets/CASAS-Backend-Eureka.jpg)
+
+### Publicación de una vivienda con fotografía
+
+Administrador y agente disponen del campo de URL HTTPS, vista previa y validación. Se comprobó que HTTP no habilita la publicación y que una imagen HTTPS válida persiste y aparece en el detalle. No se ha implementado almacenamiento de archivos subidos desde el equipo.
+
+![Vista previa en Gestión](assets/CASAS-Admin-Imagen.jpg)
+
+![Vivienda guardada con imagen](assets/CASAS-Vivienda-Publicada.jpg)
+
+### Seguridad directa: resultados ejecutados
+
+Esta tabla se genera a partir del JSON de la prueba real, no de estados escritos manualmente. El acceso permitido y el flujo por rol se verifican además en las 50 comprobaciones HTTP.
+
+| Puerto | Sin token | CLIENTE en ruta ADMIN |
+|---|---:|---:|
+| 28101 | 401 | 403 |
+| 28102 | 401 | 403 |
+| 28103 | 401 | 403 |
+| 28104 | 401 | 403 |
+| 28105 | 401 | 403 |
+| 28106 | 401 | 403 |
+| 28107 | 401 | 403 |
+| 28108 | 401 | 403 |
+| 28109 | 401 | 403 |
+
+[JSON original de seguridad](assets/seguridad-servicios.json) · [salida real de Maven](assets/maven-verify.txt). Las salidas son archivos reales de ejecución; no se presentan como capturas de una ventana CMD que no se haya fotografiado.

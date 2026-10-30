@@ -24,6 +24,7 @@ nav:
       - S11 · Frontend Angular: s11.md
       - Evidencias: evidencias.md
       - Sustentación S12: sustentacion.md
+      - Guía para presentar: guia-demo.md
   - Ejecutar y publicar: ejecucion.md
   - Antecedentes:
       - Feign inicial: tarea-1-feign-circuit-breaker.md

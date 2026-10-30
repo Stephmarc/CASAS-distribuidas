@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-10-30T11:06:49.659Z",
+  "fecha": "2026-10-30T11:49:47.936Z",
   "tipo": "Caida real del proceso propiedad-ms",
   "estados": [
     "CLOSED",
@@ -10,26 +10,26 @@
   "respuestas": [
     {
       "degradado": true,
-      "duracionMs": 3557
+      "duracionMs": 3232
     },
     {
       "degradado": true,
-      "duracionMs": 3265
+      "duracionMs": 3210
     },
     {
       "degradado": true,
-      "duracionMs": 57
+      "duracionMs": 36
     },
     {
       "degradado": true,
-      "duracionMs": 52
+      "duracionMs": 32
     },
     {
       "degradado": true,
-      "duracionMs": 53
+      "duracionMs": 36
     }
   ],
-  "reservaId": 8,
-  "propiedadId": 21,
+  "reservaId": 9,
+  "propiedadId": 23,
   "resultado": "PASS"
 }

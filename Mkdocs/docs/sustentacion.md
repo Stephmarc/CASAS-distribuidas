@@ -38,3 +38,9 @@ La siguiente es una distribución **sugerida para practicar**; cada integrante d
 Verificar aporte individual, comunicación y tiempo, actitud profesional, repositorio y estándares, MkDocs publicado, y pitch/demo. La página S12 menciona siete subaspectos, mientras la Tabla 3 de `u2-producto` enumera seis; se cubren esos seis y se añade la explicación de una decisión propia (saga orquestada).
 
 El video pitch y la defensa deben grabarlos y realizarlos los integrantes. Los guiones y capturas no los sustituyen.
+
+## Material preparado
+
+[Guía completa: requisitos, comandos, pitch y preguntas](guia-demo.md).
+
+[Descargar PowerPoint editable](assets/CASAS-Sustentacion-Unidad2-Final.pptx). Las notas de cada diapositiva incluyen el caso real y la explicación para ensayar.
