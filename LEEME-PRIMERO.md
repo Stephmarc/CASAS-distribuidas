@@ -16,7 +16,7 @@ Set-Location -LiteralPath "C:\Users\grace\Distribuidasss\unidad1\CASAS-distribui
 & ".\scripts\start-complete.ps1"
 ```
 
-El arranque compila Java, ejecuta sus pruebas, inicia infraestructura y aplicaciones y construye Angular. Si el Node instalado es antiguo, prepara una copia portable oficial sin cambiar el Node del sistema. El primer arranque tarda por las descargas. No borra volúmenes.
+El arranque compila Java, ejecuta sus pruebas, inicia infraestructura y aplicaciones y construye Angular. Si el Node instalado es antiguo, prepara una copia portable oficial sin cambiar el Node del sistema. El primer arranque tarda por las descargas. No borra volúmenes y carga nueve inmuebles ficticios con fotos y dos agentes; `-SkipDemoData` omite esa carga.
 
 Abre `http://localhost:4300`. Usuarios de laboratorio:
 
@@ -27,7 +27,7 @@ Abre `http://localhost:4300`. Usuarios de laboratorio:
 | Agente | agente | Agente123! |
 | Administrador de aplicación | admin | Admin123! |
 
-Para crear nueve inmuebles de ejemplo sin duplicar títulos:
+El inicio completo carga nueve inmuebles con fotos automáticamente. Para repetir la carga sin duplicarlos:
 
 ```powershell
 & ".\scripts\seed-demo.ps1"
@@ -56,9 +56,9 @@ Desde la misma PowerShell y carpeta:
 & ".\scripts\publish.ps1"
 ```
 
-El script muestra los cambios, crea un commit si falta y hace push a la rama actual (`main` en tu copia). Si GitHub solicita ingresar, usa **Stephmarc**. No se hizo un push remoto desde este entorno.
+El script muestra los cambios, crea un commit si falta y hace push a la rama actual (`main` en tu copia). Si GitHub solicita ingresar, usa **Stephmarc**. La entrega fue subida a `main` y MkDocs ya se publicó. Este script sirve para subir los próximos cambios.
 
-En GitHub abre **Settings → Pages → Build and deployment → Source → GitHub Actions**. En **Actions**, espera que “Publicar MkDocs” termine en verde. La dirección prevista es:
+Pages ya está configurado con **GitHub Actions**. En una copia o repositorio nuevo, se configura en **Settings → Pages → Build and deployment → Source**. En **Actions**, espera que “Publicar MkDocs” termine en verde. La dirección prevista es:
 
 https://stephmarc.github.io/CASAS-distribuidas/
 
@@ -74,7 +74,7 @@ El ZIP también incluye `frontend/dist` y `Mkdocs/site` como versiones construid
 
 - Grabar el pitch y practicar la defensa individual; el guion está en MkDocs.
 - Confirmar la distribución real de aportes. La tabla de sustentación es una propuesta para practicar, no una autoría inventada.
-- Añadir topics académicos en GitHub → About. Base del docente: `campus-juliaca`, `semestre-2026-2`, `linea-software`, `tipo-ps`, `dist`, `grupo-9-casa-o-nada` y la **sección real** del curso (`seccion-...`). No se adivinó la sección.
+- Los topics base ya están guardados en GitHub → About. Falta confirmar la sección real. Base del docente: `campus-juliaca`, `semestre-2026-2`, `linea-software`, `tipo-ps`, `dist`, `grupo-9-casa-o-nada` y la **sección real** del curso (`seccion-...`). No se adivinó la sección.
 - Si el docente exige capturas de escritorio con reloj y URL, tomarlas durante su demo. Las incluidas son capturas reales del navegador integrado.
 
 Para detener los procesos del proyecto:

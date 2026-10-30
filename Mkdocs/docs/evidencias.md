@@ -70,5 +70,14 @@ Las capturas son vistas del navegador integrado. No incluyen reloj ni barra de e
 - El equipo debe grabar su video pitch, sustentar y confirmar su aporte real.
 - El proveedor final de identidad es Keycloak; no se afirma haber construido un emisor JWT propio.
 - Mercado Pago real requiere credenciales y validación del equipo. Los pagos demostrados son simulados; la geocodificación sí consume un servicio externo real.
-- El repositorio público no tenía topics al revisarlo. Configurarlos con la sección académica correcta antes de entregar.
+- Los seis topics base están configurados. Falta confirmar y añadir la sección académica real antes de entregar.
 - La publicación remota se comprueba mediante el estado del workflow de Pages; una captura local por sí sola no la demuestra.
+
+## Publicación comprobada
+
+Código subido a `main` (commit de implementación `01060c7`). Backend y Angular terminaron en verde en GitHub Actions. La primera publicación fue bloqueada por una política antigua que solo permitía `gh-pages`; se autorizó también `main` y se cambió Pages a la fuente GitHub Actions. El despliegue posterior terminó correctamente y la página pública respondió HTTP 200 con estas evidencias.
+
+- [Backend aprobado](https://github.com/Stephmarc/CASAS-distribuidas/actions/runs/41046849489).
+- [Angular aprobado](https://github.com/Stephmarc/CASAS-distribuidas/actions/runs/41046849797).
+- [MkDocs publicado](https://github.com/Stephmarc/CASAS-distribuidas/actions/runs/41047148163).
+- [Documentación pública](https://stephmarc.github.io/CASAS-distribuidas/).
