@@ -1,0 +1,476 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] casa-common                                                        [jar]
+[INFO] casa-config                                                        [jar]
+[INFO] casa-eureka                                                        [jar]
+[INFO] casa-gateway                                                       [jar]
+[INFO] propiedad-ms                                                       [jar]
+[INFO] agente-ms                                                          [jar]
+[INFO] visita-ms                                                          [jar]
+[INFO] reserva-ms                                                         [jar]
+[INFO] pago-ms                                                            [jar]
+[INFO] contrato-ms                                                        [jar]
+[INFO] cliente-ms                                                         [jar]
+[INFO] orden-ms                                                           [jar]
+[INFO] notificacion-ms                                                    [jar]
+[INFO] CASA O NADA                                                        [pom]
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:casa-common >------------------
+[INFO] Building casa-common 0.2.0-SNAPSHOT                               [1/14]
+[INFO]   from common\casa-common\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ casa-common ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\common\casa-common\src\main\resources
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\common\casa-common\src\main\resources
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ casa-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ casa-common ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\common\casa-common\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ casa-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ casa-common ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.shared.DomainRulesTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.410 s -- in pe.edu.upeu.casaonada.shared.DomainRulesTest
+[INFO] Running pe.edu.upeu.casaonada.shared.OperacionEventTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.306 s -- in pe.edu.upeu.casaonada.shared.OperacionEventTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 15, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ casa-common ---
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:casa-config >------------------
+[INFO] Building casa-config 0.2.0-SNAPSHOT                               [2/14]
+[INFO]   from infra\casa-config\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ casa-config ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ casa-config ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ casa-config ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-config\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ casa-config ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ casa-config ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ casa-config ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ casa-config ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-config\target\casa-config-0.2.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-config\target\casa-config-0.2.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:casa-eureka >------------------
+[INFO] Building casa-eureka 0.1.0-SNAPSHOT                               [3/14]
+[INFO]   from infra\casa-eureka\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ casa-eureka ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ casa-eureka ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ casa-eureka ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-eureka\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ casa-eureka ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ casa-eureka ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ casa-eureka ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ casa-eureka ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-eureka\target\casa-eureka-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-eureka\target\casa-eureka-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:casa-gateway >-----------------
+[INFO] Building casa-gateway 0.1.0-SNAPSHOT                              [4/14]
+[INFO]   from infra\casa-gateway\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ casa-gateway ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ casa-gateway ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ casa-gateway ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-gateway\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ casa-gateway ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ casa-gateway ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ casa-gateway ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ casa-gateway ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-gateway\target\casa-gateway-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\infra\casa-gateway\target\casa-gateway-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:propiedad-ms >-----------------
+[INFO] Building propiedad-ms 0.1.0-SNAPSHOT                              [5/14]
+[INFO]   from services\propiedad-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ propiedad-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ propiedad-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ propiedad-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\propiedad-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ propiedad-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ propiedad-ms ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.propiedad.PropiedadEventsTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.75 s -- in pe.edu.upeu.casaonada.propiedad.PropiedadEventsTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ propiedad-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ propiedad-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\propiedad-ms\target\propiedad-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\propiedad-ms\target\propiedad-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] ------------------< pe.edu.upeu.casaonada:agente-ms >-------------------
+[INFO] Building agente-ms 0.1.0-SNAPSHOT                                 [6/14]
+[INFO]   from services\agente-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ agente-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ agente-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ agente-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\agente-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ agente-ms ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ agente-ms ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ agente-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ agente-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\agente-ms\target\agente-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\agente-ms\target\agente-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] ------------------< pe.edu.upeu.casaonada:visita-ms >-------------------
+[INFO] Building visita-ms 0.1.0-SNAPSHOT                                 [7/14]
+[INFO]   from services\visita-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ visita-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ visita-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ visita-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\visita-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ visita-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ visita-ms ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.visita.VisitaServiceTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.203 s -- in pe.edu.upeu.casaonada.visita.VisitaServiceTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ visita-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ visita-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\visita-ms\target\visita-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\visita-ms\target\visita-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] ------------------< pe.edu.upeu.casaonada:reserva-ms >------------------
+[INFO] Building reserva-ms 0.1.0-SNAPSHOT                                [8/14]
+[INFO]   from services\reserva-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ reserva-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 6 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ reserva-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ reserva-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\reserva-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ reserva-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ reserva-ms ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.reserva.ReservaExpirationTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.464 s -- in pe.edu.upeu.casaonada.reserva.ReservaExpirationTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ reserva-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ reserva-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\reserva-ms\target\reserva-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\reserva-ms\target\reserva-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -------------------< pe.edu.upeu.casaonada:pago-ms >--------------------
+[INFO] Building pago-ms 0.1.0-SNAPSHOT                                   [9/14]
+[INFO]   from services\pago-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ pago-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 6 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ pago-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pago-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\pago-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ pago-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ pago-ms ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.pago.MercadoPagoGatewayTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.132 s -- in pe.edu.upeu.casaonada.pago.MercadoPagoGatewayTest
+[INFO] Running pe.edu.upeu.casaonada.pago.PagoApplicationTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.850 s -- in pe.edu.upeu.casaonada.pago.PagoApplicationTest
+[INFO] Running pe.edu.upeu.casaonada.pago.PagoSagaTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.265 s -- in pe.edu.upeu.casaonada.pago.PagoSagaTest
+[INFO] Running pe.edu.upeu.casaonada.pago.PaymentRulesTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in pe.edu.upeu.casaonada.pago.PaymentRulesTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ pago-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ pago-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\pago-ms\target\pago-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\pago-ms\target\pago-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:contrato-ms >------------------
+[INFO] Building contrato-ms 0.1.0-SNAPSHOT                              [10/14]
+[INFO]   from services\contrato-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ contrato-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 5 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ contrato-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ contrato-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\contrato-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ contrato-ms ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ contrato-ms ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ contrato-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ contrato-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\contrato-ms\target\contrato-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\contrato-ms\target\contrato-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] ------------------< pe.edu.upeu.casaonada:cliente-ms >------------------
+[INFO] Building cliente-ms 0.1.0-SNAPSHOT                               [11/14]
+[INFO]   from services\cliente-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ cliente-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ cliente-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ cliente-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\cliente-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ cliente-ms ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ cliente-ms ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ cliente-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ cliente-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\cliente-ms\target\cliente-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\cliente-ms\target\cliente-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -------------------< pe.edu.upeu.casaonada:orden-ms >-------------------
+[INFO] Building orden-ms 0.1.0-SNAPSHOT                                 [12/14]
+[INFO]   from services\orden-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ orden-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ orden-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ orden-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\orden-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ orden-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ orden-ms ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running pe.edu.upeu.casaonada.orden.IdentidadTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.379 s -- in pe.edu.upeu.casaonada.orden.IdentidadTest
+[INFO] Running pe.edu.upeu.casaonada.orden.OrdenRecoveryTest
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.859 s -- in pe.edu.upeu.casaonada.orden.OrdenRecoveryTest
+[INFO] Running pe.edu.upeu.casaonada.orden.SagaTransitionsTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.099 s -- in pe.edu.upeu.casaonada.orden.SagaTransitionsTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ orden-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ orden-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\orden-ms\target\orden-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\orden-ms\target\orden-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] ---------------< pe.edu.upeu.casaonada:notificacion-ms >----------------
+[INFO] Building notificacion-ms 0.1.0-SNAPSHOT                          [13/14]
+[INFO]   from services\notificacion-ms\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ notificacion-ms ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ notificacion-ms ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ notificacion-ms ---
+[INFO] skip non existing resourceDirectory C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\notificacion-ms\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ notificacion-ms ---
+[INFO] No sources to compile
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ notificacion-ms ---
+[INFO] No tests to run.
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ notificacion-ms ---
+[INFO]
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ notificacion-ms ---
+[INFO] Replacing main artifact C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\notificacion-ms\target\notificacion-ms-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\grace\Distribuidasss\unidad1\CASAS-distribuidas\services\notificacion-ms\target\notificacion-ms-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] -----------------< pe.edu.upeu.casaonada:casa-o-nada >------------------
+[INFO] Building CASA O NADA 0.2.0-SNAPSHOT                              [14/14]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO]
+[INFO] casa-common 0.2.0-SNAPSHOT ......................... SUCCESS [ 16.125 s]
+[INFO] casa-config 0.2.0-SNAPSHOT ......................... SUCCESS [  2.656 s]
+[INFO] casa-eureka 0.1.0-SNAPSHOT ......................... SUCCESS [  2.820 s]
+[INFO] casa-gateway 0.1.0-SNAPSHOT ........................ SUCCESS [  0.907 s]
+[INFO] propiedad-ms 0.1.0-SNAPSHOT ........................ SUCCESS [ 17.861 s]
+[INFO] agente-ms 0.1.0-SNAPSHOT ........................... SUCCESS [  1.801 s]
+[INFO] visita-ms 0.1.0-SNAPSHOT ........................... SUCCESS [  9.245 s]
+[INFO] reserva-ms 0.1.0-SNAPSHOT .......................... SUCCESS [ 10.170 s]
+[INFO] pago-ms 0.1.0-SNAPSHOT ............................. SUCCESS [ 16.745 s]
+[INFO] contrato-ms 0.1.0-SNAPSHOT ......................... SUCCESS [  0.958 s]
+[INFO] cliente-ms 0.1.0-SNAPSHOT .......................... SUCCESS [  0.835 s]
+[INFO] orden-ms 0.1.0-SNAPSHOT ............................ SUCCESS [  9.486 s]
+[INFO] notificacion-ms 0.1.0-SNAPSHOT ..................... SUCCESS [  0.837 s]
+[INFO] CASA O NADA 0.2.0-SNAPSHOT ......................... SUCCESS [  0.001 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:33 min
+[INFO] Finished at: 2026-10-30T05:43:05-05:00
+[INFO] ------------------------------------------------------------------------

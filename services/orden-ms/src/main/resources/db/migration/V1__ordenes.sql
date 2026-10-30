@@ -1,0 +1,3 @@
+CREATE TABLE ordenes(id bigserial PRIMARY KEY,reserva_id bigint NOT NULL UNIQUE,propiedad_id bigint NOT NULL,cliente_id bigint NOT NULL,monto numeric(14,2) NOT NULL CHECK(monto>0),total numeric(14,2) NOT NULL CHECK(total>=monto),moneda varchar(8) NOT NULL,tipo varchar(20) NOT NULL,saga_id varchar(36) NOT NULL UNIQUE,idempotency_key varchar(120) NOT NULL UNIQUE,estado varchar(40) NOT NULL,motivo varchar(1000),trace_id varchar(80),created_at timestamptz NOT NULL,updated_at timestamptz NOT NULL,reserva_expira_at timestamptz NOT NULL,deadline timestamptz NOT NULL,version bigint);
+CREATE INDEX ix_orden_cliente ON ordenes(cliente_id);
+CREATE INDEX ix_orden_deadline ON ordenes(deadline);

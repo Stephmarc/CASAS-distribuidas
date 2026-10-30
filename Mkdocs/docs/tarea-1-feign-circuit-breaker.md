@@ -41,7 +41,7 @@ Antes de ejecutar la comunicación Feign se verificó que los componentes princi
 
 ![Actuator health del Gateway](assets/evidencias/02-gateway-health.png)
 
-<p class="caption"><strong>Descripción.</strong> La consulta a <code>localhost:18080/actuator/health</code> devuelve estado general <strong>UP</strong>. En <code>discoveryComposite</code> aparecen los tres servicios registrados, verificando que el Gateway participa correctamente en el descubrimiento.</p>
+<p class="caption"><strong>Descripción.</strong> La consulta a <code>localhost:28080/actuator/health</code> devuelve estado general <strong>UP</strong>. En <code>discoveryComposite</code> aparecen los tres servicios registrados, verificando que el Gateway participa correctamente en el descubrimiento.</p>
 </div>
 
 ### Bloque 3 — Comunicación declarativa con OpenFeign

@@ -1,0 +1,33 @@
+{
+  "results": [
+    {
+      "query": "",
+      "status": 200,
+      "count": 13
+    },
+    {
+      "query": "?ciudad=JULIACA",
+      "status": 200,
+      "count": 11
+    },
+    {
+      "query": "?tipoOperacion=COMPRA&precioMin=1&precioMax=400000",
+      "status": 200,
+      "count": 8
+    },
+    {
+      "query": "?estado=DISPONIBLE",
+      "status": 200,
+      "count": 7
+    }
+  ],
+  "geocoding": {
+    "longitud": -70.13333,
+    "proveedor": "Open-Meteo / GeoNames",
+    "disponible": true,
+    "region": "Puno",
+    "ciudad": "Juliaca",
+    "latitud": -15.5,
+    "pais": "Perú"
+  }
+}

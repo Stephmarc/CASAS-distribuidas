@@ -1,0 +1,44 @@
+[
+  {
+    "found": 15,
+    "successful": 15,
+    "failed": 0,
+    "module": "common/casa-common",
+    "exitCode": 0
+  },
+  {
+    "found": 5,
+    "successful": 5,
+    "failed": 0,
+    "module": "services/propiedad-ms",
+    "exitCode": 0
+  },
+  {
+    "found": 6,
+    "successful": 6,
+    "failed": 0,
+    "module": "services/visita-ms",
+    "exitCode": 0
+  },
+  {
+    "found": 2,
+    "successful": 2,
+    "failed": 0,
+    "module": "services/reserva-ms",
+    "exitCode": 0
+  },
+  {
+    "found": 31,
+    "successful": 31,
+    "failed": 0,
+    "module": "services/pago-ms",
+    "exitCode": 0
+  },
+  {
+    "found": 19,
+    "successful": 19,
+    "failed": 0,
+    "module": "services/orden-ms",
+    "exitCode": 0
+  }
+]

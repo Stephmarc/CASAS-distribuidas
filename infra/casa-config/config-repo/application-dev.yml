@@ -1,0 +1,36 @@
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 25s
+  task:
+    scheduling:
+      pool:
+        size: 4
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 1500
+            readTimeout: 2500
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 4
+        minimumNumberOfCalls: 4
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        ignoreExceptions:
+          - feign.FeignException$FeignClientException
+
+server:
+  shutdown: graceful
+
+logging:
+  file:
+    name: .run/logs/${spring.application.name}.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"

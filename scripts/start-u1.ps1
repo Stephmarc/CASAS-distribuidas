@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 
 Write-Host "1/5 PostgreSQL" -ForegroundColor Cyan
 docker compose -f compose-dev.yml up -d postgres

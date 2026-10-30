@@ -1,11 +1,36 @@
 server:
-  port: 18116
+  port: 28107
 
 spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    consumer:
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 5000
+        max.block.ms: 5000
+    listener:
+      ack-mode: record
   datasource:
-    url: jdbc:postgresql://localhost:15440/casa_pago
-    username: casa
-    password: casa
+    hikari:
+      maximum-pool-size: 8
+      minimum-idle: 1
+      connection-timeout: 10000
+      validation-timeout: 3000
+      connection-init-sql: SET lock_timeout TO '5s'
+    url: jdbc:postgresql://localhost:25440/casa_pago
+    username: ${CASA_DB_USER:casa}
+    password: ${CASA_DB_PASSWORD:casa}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -13,31 +38,52 @@ spring:
     open-in-view: false
   flyway:
     enabled: true
+    baseline-on-migrate: true
+    baseline-version: 2
     locations: classpath:db/migration
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${JWT_ISSUER_URI:http://localhost:18090/realms/casa-o-nada}
-          jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:18090/realms/casa-o-nada/protocol/openid-connect/certs}
+          issuer-uri: ${JWT_ISSUER_URI:http://localhost:28090/realms/casa-o-nada}
+          jwk-set-uri: ${JWT_JWK_SET_URI:http://localhost:28090/realms/casa-o-nada/protocol/openid-connect/certs}
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:18761/eureka
+      defaultZone: http://localhost:28761/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}:${random.value}
 
 app:
-  security:
-    enabled: true
+  pagos:
+    sandbox:
+      enabled: ${PAGOS_SANDBOX_ENABLED:true}
+  mercadopago:
+    enabled: ${MERCADOPAGO_ENABLED:false}
+    access-token: ${MERCADOPAGO_ACCESS_TOKEN:}
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,circuitbreakers,circuitbreakerevents
+        include: health,info,prometheus,metrics,circuitbreakers,circuitbreakerevents
   endpoint:
     health:
-      show-details: always
+      show-details: when-authorized
+
+logging:
+  file:
+    name: .run/logs/${spring.application.name}.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"
+
+management.endpoint.health.probes.enabled: true
+management.endpoint.health.group.readiness.include: readinessState,db
+management.endpoint.health.group.liveness.include: livenessState
+management.metrics.distribution.percentiles-histogram.http.server.requests: true
+
+spring.cloud.openfeign.client.config.default.connectTimeout: 1500
+spring.cloud.openfeign.client.config.default.readTimeout: 2000

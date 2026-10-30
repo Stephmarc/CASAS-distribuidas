@@ -1,30 +1,19 @@
-# Unidad II · Sistema de distribución robusto
+# CASA O NADA
 
-## Evidencia grupal — CASA O NADA
+Plataforma inmobiliaria distribuida del **Grupo 9**. Une la búsqueda de un inmueble, la agenda de visitas, la reserva, el adelanto y el contrato en una operación que puede seguirse de principio a fin.
 
-### Datos del equipo
-
-| Campo | Información |
+| Integrante | Equipo |
 |---|---|
-| **Grupo** | 9 |
-| **Ciclo** | V |
-| **Integrantes** | Alanguia Japura Miguel Angel · Jannys Graciela Navarro Acrota · Olger Meza Rupa |
-| **Curso** | Desarrollo de Aplicaciones Distribuidas |
-| **Proyecto** | CASA O NADA |
-| **Repositorio** | [CASAS-distribuidas](https://github.com/Stephmarc/CASAS-distribuidas) |
+| Jannys Graciela Navarro Acrota | CASA O NADA |
+| Olger Meza Rupa | CASA O NADA |
+| Miguel Angel Alanguia Japura | CASA O NADA |
 
-## 1. Presentación de la unidad
+## Recorrido de lectura
 
-En esta unidad se fortalece la arquitectura distribuida del proyecto **CASA O NADA**. El trabajo se concentra en dos problemas reales de una arquitectura de microservicios: la comunicación síncrona resiliente entre servicios y el control de acceso mediante tokens JWT.
+1. [Base de Unidad I](unidad1.md): configuración, registro, acceso y datos.
+2. [Producto de Unidad II](u2-producto.md): capacidades aplicadas a nuestro dominio.
+3. [Ejecución](ejecucion.md): iniciar, comprobar y detener sin borrar datos.
+4. [Evidencias](evidencias.md): resultados obtenidos y límites de verificación.
+5. [Sustentación](sustentacion.md): recorrido de demo y preguntas de práctica.
 
-La documentación se divide únicamente en las **dos tareas solicitadas**. Dentro de cada tarea, todo el contenido se presenta de forma continua para poder desplazarse verticalmente, igual que en la documentación de la Unidad I.
-
-## 2. Tareas desarrolladas
-
-### S06 · Feign y Circuit Breaker
-
-Se documenta el descubrimiento mediante Eureka, la comunicación de `reserva-ms` con `propiedad-ms` usando OpenFeign, el funcionamiento normal del flujo, la apertura del Circuit Breaker, el fallback y la recuperación del servicio.
-
-### S07 · Seguridad distribuida con JWT
-
-Se documenta Keycloak como emisor de JWT, la configuración de los microservicios como Resource Server, la protección del Gateway y las pruebas de autorización por roles con respuestas `200`, `401`, `403` y `201`.
+El código del repositorio es la fuente de verdad. Las capturas previas a esta actualización se conservan como antecedentes; no prueban por sí solas el estado actual.

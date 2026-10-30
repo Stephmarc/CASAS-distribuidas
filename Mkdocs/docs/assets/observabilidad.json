@@ -1,0 +1,47 @@
+{
+  "fecha": "2026-10-30T04:58:46.098Z",
+  "metricas": [
+    {
+      "application": "casa-propiedad-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-cliente-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-reserva-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-gateway",
+      "up": 1
+    },
+    {
+      "application": "casa-orden-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-pago-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-notificacion-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-contrato-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-visita-ms",
+      "up": 1
+    },
+    {
+      "application": "casa-agente-ms",
+      "up": 1
+    }
+  ],
+  "serviciosConLogs": 11,
+  "lineas": 6294
+}

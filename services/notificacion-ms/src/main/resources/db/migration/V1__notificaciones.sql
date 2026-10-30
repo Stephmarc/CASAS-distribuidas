@@ -1,0 +1,1 @@
+CREATE TABLE notificaciones(id bigserial PRIMARY KEY,event_id varchar(36) NOT NULL UNIQUE,cliente_id bigint NOT NULL,orden_id bigint NOT NULL,tipo varchar(40) NOT NULL,mensaje varchar(1000) NOT NULL,created_at timestamptz NOT NULL,leida boolean NOT NULL DEFAULT false);

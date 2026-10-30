@@ -1,0 +1,93 @@
+{
+  "comando": "mvnw.cmd -B -ntp verify",
+  "resultado": "BUILD SUCCESS",
+  "tests": 78,
+  "failures": 0,
+  "errors": 0,
+  "suites": [
+    {
+      "suite": "pe.edu.upeu.casaonada.shared.DomainRulesTest",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.shared.OperacionEventTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.orden.IdentidadTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.orden.OrdenRecoveryTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.orden.SagaTransitionsTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.pago.MercadoPagoGatewayTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.pago.PagoApplicationTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.pago.PagoSagaTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.pago.PaymentRulesTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.propiedad.PropiedadEventsTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.reserva.ReservaExpirationTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "pe.edu.upeu.casaonada.visita.VisitaServiceTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

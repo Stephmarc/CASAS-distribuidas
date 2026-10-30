@@ -1,0 +1,28 @@
+[INFO] Building CASA O NADA 0.2.0-SNAPSHOT                              [14/14]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- clean:3.2.0:clean (default-clean) @ casa-o-nada ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO]
+[INFO] casa-common 0.2.0-SNAPSHOT ......................... SUCCESS [  6.185 s]
+[INFO] casa-config 0.2.0-SNAPSHOT ......................... SUCCESS [  1.127 s]
+[INFO] casa-eureka 0.1.0-SNAPSHOT ......................... SUCCESS [  0.792 s]
+[INFO] casa-gateway 0.1.0-SNAPSHOT ........................ SUCCESS [  0.706 s]
+[INFO] propiedad-ms 0.1.0-SNAPSHOT ........................ SUCCESS [  5.730 s]
+[INFO] agente-ms 0.1.0-SNAPSHOT ........................... SUCCESS [  0.682 s]
+[INFO] visita-ms 0.1.0-SNAPSHOT ........................... SUCCESS [  4.263 s]
+[INFO] reserva-ms 0.1.0-SNAPSHOT .......................... SUCCESS [  3.467 s]
+[INFO] pago-ms 0.1.0-SNAPSHOT ............................. SUCCESS [  8.603 s]
+[INFO] contrato-ms 0.1.0-SNAPSHOT ......................... SUCCESS [  1.449 s]
+[INFO] cliente-ms 0.1.0-SNAPSHOT .......................... SUCCESS [  0.921 s]
+[INFO] orden-ms 0.1.0-SNAPSHOT ............................ SUCCESS [  7.445 s]
+[INFO] notificacion-ms 0.1.0-SNAPSHOT ..................... SUCCESS [  0.783 s]
+[INFO] CASA O NADA 0.2.0-SNAPSHOT ......................... SUCCESS [  0.042 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  43.094 s
+[INFO] Finished at: 2026-10-16T11:37:25-03:00
+[INFO] ------------------------------------------------------------------------

@@ -1,11 +1,11 @@
-param(
-    [string]$Gateway = "http://localhost:18080",
-    [string]$Keycloak = "http://localhost:18090"
+﻿param(
+    [string]$Gateway = "http://localhost:28080",
+    [string]$Keycloak = "http://localhost:28090"
 )
 
 $ErrorActionPreference = "Stop"
 $realm = "casa-o-nada"
-$clientId = "casa-o-nada-web"
+$clientId = "casa-o-nada-tests"
 
 function Get-Token([string]$Username, [string]$Password) {
     $response = Invoke-RestMethod -Method Post `

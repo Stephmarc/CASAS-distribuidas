@@ -6,15 +6,15 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: postgres
-      POSTGRES_USER: casa
-      POSTGRES_PASSWORD: casa
+      POSTGRES_USER: ${CASA_DB_USER:-casa}
+      POSTGRES_PASSWORD: ${CASA_DB_PASSWORD:-casa}
     ports:
-      - "15440:5432"
+      - "127.0.0.1:25440:5432"
     volumes:
       - casa_o_nada_pgdata:/var/lib/postgresql/data
       - ./infra/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U casa -d postgres"]
+      test: ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d postgres']
       interval: 5s
       timeout: 5s
       retries: 12
@@ -26,21 +26,58 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      PGPASSWORD: casa
+      PGPASSWORD: ${CASA_DB_PASSWORD:-casa}
+      POSTGRES_USER: ${CASA_DB_USER:-casa}
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
         set -e
-        for db in casa_propiedad casa_agente casa_visita casa_reserva casa_pago casa_contrato; do
-          exists=$$(psql -h postgres -U casa -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$$db'")
+        for db in casa_propiedad casa_agente casa_visita casa_reserva casa_pago casa_contrato casa_cliente casa_orden casa_notificacion; do
+          exists=$$(psql -h postgres -U "$$POSTGRES_USER" -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$$db'")
           if [ "$$exists" != "1" ]; then
             echo "Creando base de datos $$db"
-            psql -h postgres -U casa -d postgres -c "CREATE DATABASE $$db OWNER casa"
+            psql -h postgres -U "$$POSTGRES_USER" -d postgres -c "CREATE DATABASE $$db"
           else
             echo "Base de datos $$db ya existe"
           fi
         done
     restart: "no"
+
+  kafka-init:
+    image: apache/kafka:3.9.1
+    user: "0:0"
+    entrypoint: ["/bin/sh", "-c", "chown -R 1000:1000 /var/lib/kafka/data"]
+    volumes: ["casa_o_nada_kafka:/var/lib/kafka/data"]
+    restart: "no"
+  kafka:
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+    image: apache/kafka:3.9.1
+    hostname: kafka
+    ports:
+      - "127.0.0.1:29092:29092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,EXTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    volumes:
+      - casa_o_nada_kafka:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.3
@@ -50,9 +87,45 @@ services:
       KC_BOOTSTRAP_ADMIN_USERNAME: admin
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
-      - "18090:8080"
+      - "127.0.0.1:28090:8080"
     volumes:
       - ./infra/keycloak:/opt/keycloak/data/import:ro
 
+  kafka-ui:
+    image: ghcr.io/kafbat/kafka-ui:v1.5.0
+    ports: ["127.0.0.1:28085:8080"]
+    environment:
+      KAFKA_CLUSTERS_0_NAME: casas
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    depends_on: [kafka]
+  prometheus:
+    image: prom/prometheus:v3.14.0
+    ports: ["127.0.0.1:29090:9090"]
+    volumes: ["./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro"]
+    extra_hosts: ["host.docker.internal:host-gateway"]
+  loki:
+    image: grafana/loki:3.7.6
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    ports: ["127.0.0.1:23100:3100"]
+  alloy:
+    image: grafana/alloy:v1.8.3
+    command: ["run", "/etc/alloy/config.alloy", "--storage.path=/var/lib/alloy/data"]
+    volumes:
+      - ./observability/alloy.alloy:/etc/alloy/config.alloy:ro
+      - ./.run/logs:/logs:ro
+    depends_on: [loki]
+  grafana:
+    image: grafana/grafana:11.4.0
+    ports: ["127.0.0.1:23000:3000"]
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-casas-demo-local}
+    volumes:
+      - ./observability/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/dashboards:/var/lib/grafana/dashboards:ro
+      - casa_grafana:/var/lib/grafana
+    depends_on: [prometheus, loki]
 volumes:
+  casa_grafana:
+  casa_o_nada_kafka:
   casa_o_nada_pgdata:

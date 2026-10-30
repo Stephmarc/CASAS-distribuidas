@@ -1,3 +1,13 @@
 package pe.edu.upeu.casaonada.visita.dto;
-import java.time.*; import java.math.BigDecimal; import pe.edu.upeu.casaonada.visita.domain.*;
-public record VisitaRequest(@jakarta.validation.constraints.NotNull Long clienteId, @jakarta.validation.constraints.NotNull Long propiedadId, @jakarta.validation.constraints.NotNull Long agenteId, @jakarta.validation.constraints.NotNull OffsetDateTime fechaHora, String observaciones, @jakarta.validation.constraints.NotNull EstadoVisita estado) {}
+
+import jakarta.validation.constraints.*;
+import java.time.OffsetDateTime;
+import pe.edu.upeu.casaonada.visita.domain.EstadoVisita;
+
+public record VisitaRequest(
+    @Positive Long clienteId,
+    @NotNull @Positive Long propiedadId,
+    @NotNull @Positive Long agenteId,
+    @NotNull OffsetDateTime fechaHora,
+    @Size(max = 1000) String observaciones,
+    @NotNull EstadoVisita estado) {}

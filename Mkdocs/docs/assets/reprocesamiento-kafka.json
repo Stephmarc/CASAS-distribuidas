@@ -1,0 +1,10 @@
+{
+  "fecha": "2026-10-30T11:09:18.630Z",
+  "eventId": "ab4dfc2b-0ae7-423f-9393-e75fb0ece522",
+  "sagaId": "497f2a8c-cae4-4a60-868b-49e945121555",
+  "ordenId": 1,
+  "contratosAntes": 1,
+  "contratosDespues": 1,
+  "duplicadoConfirmadoEnConsumidor": true,
+  "resultado": "PASS"
+}

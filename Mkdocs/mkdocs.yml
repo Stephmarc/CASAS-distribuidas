@@ -1,39 +1,42 @@
-site_name: Evidencias - Sistemas Distribuidos
-site_description: Unidad II - Grupo 9
-site_author: Grupo 9
+site_name: CASAS · Casa o Nada
+site_description: Plataforma inmobiliaria distribuida · Grupo 9
+site_author: Jannys Navarro · Olger Meza · Miguel Angel Alanguia
+site_url: https://stephmarc.github.io/CASAS-distribuidas/
 repo_url: https://github.com/Stephmarc/CASAS-distribuidas
-repo_name: Stephmarc/CASAS-distribuidas
-
 theme:
   name: material
   language: es
-  features:
-    - navigation.sections
-    - navigation.top
-    - toc.follow
-    - search.suggest
-    - search.highlight
-    - content.code.copy
   palette:
-    primary: indigo
-    accent: indigo
-
+    primary: teal
+    accent: amber
+  features: [navigation.sections, navigation.top, content.code.copy]
 nav:
   - Inicio: index.md
-  - II. Sistema de distribución robusto:
-      - S06 · Feign y Circuit Breaker: tarea-1-feign-circuit-breaker.md
-      - S07 · Seguridad distribuida con JWT: tarea-2-jwt.md
-
+  - Unidad I:
+      - Sistema distribuido base: unidad1.md
+  - Unidad II:
+      - Producto de unidad: u2-producto.md
+      - S06 · Comunicación resiliente: s06.md
+      - S07 · Seguridad y Keycloak: s07.md
+      - S08 · Mensajería asíncrona: s08.md
+      - S09 · Consistencia distribuida: s09.md
+      - S10 · Observabilidad: s10.md
+      - S11 · Frontend Angular: s11.md
+      - Evidencias: evidencias.md
+      - Sustentación S12: sustentacion.md
+  - Ejecutar y publicar: ejecucion.md
+  - Antecedentes:
+      - Feign inicial: tarea-1-feign-circuit-breaker.md
+      - JWT inicial: tarea-2-jwt.md
+      - Mensajería inicial: tarea-3-mensajeria.md
+      - Saga inicial: tarea-4-saga.md
+      - Estabilización: estabilizacion.md
 markdown_extensions:
   - admonition
-  - attr_list
-  - md_in_html
   - tables
-  - toc:
-      permalink: true
-  - pymdownx.details
-  - pymdownx.highlight
-  - pymdownx.superfences
-
-extra_css:
-  - stylesheets/extra.css
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

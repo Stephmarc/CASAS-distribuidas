@@ -1,5 +1,5 @@
 server:
-  port: 18761
+  port: 28761
 
 eureka:
   client:
@@ -12,7 +12,14 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics
+        include: health,info,prometheus,metrics
   endpoint:
     health:
-      show-details: always
+      show-details: when-authorized
+
+logging:
+  file:
+    name: .run/logs/${spring.application.name}.log
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${spring.application.name}] [trace=%X{traceId}] %logger{32} - %msg%n"

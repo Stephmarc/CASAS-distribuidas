@@ -29,6 +29,7 @@ public class PropiedadIntegrationService {
     }
 
     public PropiedadDto fallbackValidarReservable(Long propiedadId, Throwable ex) {
+        if(ex instanceof FeignException f && (f.status()==401||f.status()==403))throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.valueOf(f.status()),"Acceso remoto rechazado");
         if (ex instanceof FeignException.NotFound) {
             throw new ResourceNotFoundException("Propiedad no encontrada: " + propiedadId);
         }
@@ -51,6 +52,7 @@ public class PropiedadIntegrationService {
     }
 
     public PropiedadConsultaResult fallbackConsultar(Long propiedadId, Throwable ex) {
+        if(ex instanceof FeignException f && (f.status()==401||f.status()==403))throw new org.springframework.web.server.ResponseStatusException(org.springframework.http.HttpStatus.valueOf(f.status()),"Acceso remoto rechazado");
         if (ex instanceof FeignException.NotFound) {
             return new PropiedadConsultaResult(null, true,
                     "La reserva existe, pero la propiedad " + propiedadId + " no fue encontrada");

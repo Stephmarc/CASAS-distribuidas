@@ -2,6 +2,8 @@ package pe.edu.upeu.casaonada.propiedad.domain;
 import jakarta.persistence.*; import java.time.*; import java.math.BigDecimal;
 @Entity @Table(name="propiedades")
 public class Propiedad {
+ @Column(name="saga_id",length=36) private String sagaId;
+ public String getSagaId(){return sagaId;} public void setSagaId(String value){sagaId=value;}
  @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
  @Column(nullable=false,length=160)
  private String titulo;

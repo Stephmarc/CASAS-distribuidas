@@ -1,0 +1,10 @@
+PASS migrations and aggregate queue agente-ms
+PASS migrations and aggregate queue cliente-ms
+PASS migrations and aggregate queue contrato-ms
+PASS migrations and aggregate queue notificacion-ms
+PASS migrations and aggregate queue orden-ms
+PASS migrations and aggregate queue pago-ms
+PASS migrations and aggregate queue propiedad-ms
+PASS migrations and aggregate queue reserva-ms
+PASS migrations and aggregate queue visita-ms
+SQL checks passed: 80

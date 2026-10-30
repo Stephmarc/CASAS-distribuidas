@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 10s
+scrape_configs:
+  - job_name: casas
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["host.docker.internal:28101"]
+        labels: {application: "casa-cliente-ms"}
+      - targets: ["host.docker.internal:28102"]
+        labels: {application: "casa-propiedad-ms"}
+      - targets: ["host.docker.internal:28103"]
+        labels: {application: "casa-agente-ms"}
+      - targets: ["host.docker.internal:28104"]
+        labels: {application: "casa-visita-ms"}
+      - targets: ["host.docker.internal:28105"]
+        labels: {application: "casa-reserva-ms"}
+      - targets: ["host.docker.internal:28106"]
+        labels: {application: "casa-orden-ms"}
+      - targets: ["host.docker.internal:28107"]
+        labels: {application: "casa-pago-ms"}
+      - targets: ["host.docker.internal:28108"]
+        labels: {application: "casa-contrato-ms"}
+      - targets: ["host.docker.internal:28109"]
+        labels: {application: "casa-notificacion-ms"}
+      - targets: ["host.docker.internal:28080"]
+        labels: {application: casa-gateway}

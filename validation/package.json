@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "kafkajs": "2.2.4"
+  }
+}

@@ -73,7 +73,7 @@ Se solicitó un token al endpoint OpenID Connect de Keycloak utilizando el clien
 ```text
 username: cliente
 role: CLIENTE
-issuer: http://localhost:18090/realms/casa-o-nada
+issuer: http://localhost:28090/realms/casa-o-nada
 ```
 
 La prueba automatizada leyó correctamente la identidad y los roles del JWT y devolvió **HTTP 200**.
@@ -110,7 +110,7 @@ Esta diferencia fue comprobada directamente durante las pruebas.
 
 ## 8. Reproducción técnica
 
-1. Levantar Keycloak en `localhost:18090`.
+1. Levantar Keycloak en `localhost:28090`.
 2. Verificar el realm `casa-o-nada`.
 3. Levantar Config Server, Eureka, Gateway y microservicios.
 4. Solicitar un token para el usuario de prueba.

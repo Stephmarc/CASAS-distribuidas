@@ -1,7 +1,7 @@
-param(
+﻿param(
     [Parameter(Mandatory=$true)][long]$ReservaId,
-    [string]$Gateway = "http://localhost:18080",
-    [string]$Keycloak = "http://localhost:18090"
+    [string]$Gateway = "http://localhost:28080",
+    [string]$Keycloak = "http://localhost:28090"
 )
 
 $token = (Invoke-RestMethod -Method Post `

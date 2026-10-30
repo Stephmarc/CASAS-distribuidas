@@ -6,3 +6,16 @@ target/
 .DS_Store
 logs/
 *.log
+
+.run/
+.env
+
+backups/
+
+node_modules/
+
+Mkdocs/site/
+frontend/compiled/
+frontend/dist/
+**/classpath.txt
+.tools/

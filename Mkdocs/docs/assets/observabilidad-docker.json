@@ -1,0 +1,87 @@
+{
+  "fecha": "2026-10-30T11:12:58.612Z",
+  "tipo": "Docker Compose de CASAS, sin inyeccion manual de logs",
+  "aplicaciones": [
+    {
+      "name": "casa-reserva-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-pago-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-propiedad-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-agente-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-contrato-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-visita-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-gateway",
+      "up": 1
+    },
+    {
+      "name": "casa-orden-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-cliente-ms",
+      "up": 1
+    },
+    {
+      "name": "casa-notificacion-ms",
+      "up": 1
+    }
+  ],
+  "archivosAlloy": [
+    "/logs/casa-agente-ms.log",
+    "/logs/casa-cliente-ms.log",
+    "/logs/casa-contrato-ms.log",
+    "/logs/casa-eureka.log",
+    "/logs/casa-gateway.log",
+    "/logs/casa-notificacion-ms.log",
+    "/logs/casa-orden-ms.log",
+    "/logs/casa-pago-ms.log",
+    "/logs/casa-propiedad-ms.log",
+    "/logs/casa-reserva-ms.log",
+    "/logs/casa-visita-ms.log"
+  ],
+  "grafana": {
+    "prometheus": {
+      "status": "OK",
+      "details": {
+        "application": "Prometheus",
+        "features": {
+          "rulerApiEnabled": false
+        }
+      },
+      "message": "Successfully queried the Prometheus API."
+    },
+    "loki": {
+      "status": "OK",
+      "message": "Data source successfully connected."
+    }
+  },
+  "traceDemo": "07da5641-e729-402d-a640-14a64108827e",
+  "ordenDemo": 1,
+  "serviciosMismoTrace": [
+    "/logs/casa-cliente-ms.log",
+    "/logs/casa-contrato-ms.log",
+    "/logs/casa-notificacion-ms.log",
+    "/logs/casa-orden-ms.log",
+    "/logs/casa-pago-ms.log",
+    "/logs/casa-propiedad-ms.log",
+    "/logs/casa-reserva-ms.log"
+  ],
+  "resultado": "PASS"
+}

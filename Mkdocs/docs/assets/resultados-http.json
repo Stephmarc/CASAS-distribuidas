@@ -1,0 +1,202 @@
+[
+  {
+    "test": "Sin JWT devuelve 401",
+    "status": "PASS"
+  },
+  {
+    "test": "Cliente no administra perfiles",
+    "status": "PASS"
+  },
+  {
+    "test": "JWT impide suplantar clienteId",
+    "status": "PASS"
+  },
+  {
+    "test": "Orden idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Propiedad bloqueada por la SAGA",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no lee la orden",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no lee la reserva",
+    "status": "PASS"
+  },
+  {
+    "test": "Monto adulterado devuelve 409",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Cliente no puede aprobar su pago",
+    "status": "PASS"
+  },
+  {
+    "test": "Compra aprobada vende la propiedad",
+    "status": "PASS"
+  },
+  {
+    "test": "Reserva convertida",
+    "status": "PASS"
+  },
+  {
+    "test": "Un contrato por el valor total del inmueble",
+    "status": "PASS"
+  },
+  {
+    "test": "Aprobacion duplicada no duplica contrato",
+    "status": "PASS"
+  },
+  {
+    "test": "JWT impide suplantar clienteId",
+    "status": "PASS"
+  },
+  {
+    "test": "Orden idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Propiedad bloqueada por la SAGA",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Rechazo libera propiedad",
+    "status": "PASS"
+  },
+  {
+    "test": "Rechazo cancela reserva",
+    "status": "PASS"
+  },
+  {
+    "test": "JWT impide suplantar clienteId",
+    "status": "PASS"
+  },
+  {
+    "test": "Orden idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Propiedad bloqueada por la SAGA",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Cancelacion revierte pago pendiente",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago tardio no resucita saga cancelada",
+    "status": "PASS"
+  },
+  {
+    "test": "JWT impide suplantar clienteId",
+    "status": "PASS"
+  },
+  {
+    "test": "Orden idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Propiedad bloqueada por la SAGA",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago idempotente",
+    "status": "PASS"
+  },
+  {
+    "test": "Alquiler aprobado cambia estado correctamente",
+    "status": "PASS"
+  },
+  {
+    "test": "Notificacion persistida una sola vez",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no lee pagos",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no lee contratos",
+    "status": "PASS"
+  },
+  {
+    "test": "Falta de estado devuelve 400",
+    "status": "PASS"
+  },
+  {
+    "test": "Venta manual requiere SAGA",
+    "status": "PASS"
+  },
+  {
+    "test": "Pago sin clave de idempotencia devuelve 400",
+    "status": "PASS"
+  },
+  {
+    "test": "Eventos tecnicos requieren administrador",
+    "status": "PASS"
+  },
+  {
+    "test": "Estado de eventos disponible para administrador",
+    "status": "PASS"
+  },
+  {
+    "test": "Preflight CORS permite el frontend configurado",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no acepta el contrato",
+    "status": "PASS"
+  },
+  {
+    "test": "Cliente acepta su contrato de orden confirmada",
+    "status": "PASS"
+  },
+  {
+    "test": "Contrato aceptado no retrocede",
+    "status": "PASS"
+  },
+  {
+    "test": "Visita inicia solicitada y usa identidad del JWT",
+    "status": "PASS"
+  },
+  {
+    "test": "Agenda evita duplicar el horario",
+    "status": "PASS"
+  },
+  {
+    "test": "Otro cliente no lee la visita",
+    "status": "PASS"
+  },
+  {
+    "test": "No se marca realizada una visita futura",
+    "status": "PASS"
+  },
+  {
+    "test": "Cliente cancela su visita",
+    "status": "PASS"
+  },
+  {
+    "test": "Una visita cancelada no se reabre",
+    "status": "PASS"
+  },
+  {
+    "test": "Seguimiento del pago disponible para su cliente",
+    "status": "PASS"
+  }
+]

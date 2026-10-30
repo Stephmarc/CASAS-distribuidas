@@ -1,0 +1,10 @@
+ALTER TABLE pagos ADD COLUMN cliente_id bigint;
+ALTER TABLE pagos ADD COLUMN external_reference varchar(80) UNIQUE;
+ALTER TABLE pagos ADD COLUMN request_hash varchar(64);
+ALTER TABLE pagos ADD COLUMN submission_started_at timestamptz;
+ALTER TABLE pagos ADD COLUMN last_provider_error varchar(120);
+ALTER TABLE pagos ADD COLUMN reconcile_attempts integer NOT NULL DEFAULT 0;
+UPDATE pagos p SET cliente_id=(g.payload::jsonb->>'clienteId')::bigint FROM pago_saga_guard g WHERE p.orden_id=g.orden_id;
+CREATE UNIQUE INDEX ux_pago_provider_id ON pagos(proveedor,provider_payment_id) WHERE provider_payment_id IS NOT NULL;
+CREATE INDEX ix_pago_cliente ON pagos(cliente_id);
+CREATE INDEX ix_pago_reconcile ON pagos(estado) WHERE proveedor='MERCADO_PAGO' AND estado IN ('CREADO','PENDIENTE');

@@ -1,3 +1,19 @@
 package pe.edu.upeu.casaonada.propiedad.dto;
-import java.time.*; import java.math.BigDecimal; import pe.edu.upeu.casaonada.propiedad.domain.*;
-public record PropiedadRequest(@jakarta.validation.constraints.NotBlank String titulo, @jakarta.validation.constraints.NotBlank String descripcion, @jakarta.validation.constraints.NotBlank String ciudad, @jakarta.validation.constraints.NotBlank String direccion, @jakarta.validation.constraints.NotNull @jakarta.validation.constraints.PositiveOrZero BigDecimal precio, @jakarta.validation.constraints.NotNull Integer habitaciones, @jakarta.validation.constraints.NotNull Integer banos, @jakarta.validation.constraints.NotNull @jakarta.validation.constraints.PositiveOrZero BigDecimal areaM2, @jakarta.validation.constraints.NotNull TipoOperacion tipoOperacion, @jakarta.validation.constraints.NotNull EstadoPropiedad estado, Long agenteId, String imagenPrincipalUrl) {}
+
+import jakarta.validation.constraints.*;
+import java.math.BigDecimal;
+import pe.edu.upeu.casaonada.propiedad.domain.*;
+
+public record PropiedadRequest(
+    @NotBlank @Size(max = 160) String titulo,
+    @NotBlank @Size(max = 2000) String descripcion,
+    @NotBlank @Size(max = 120) String ciudad,
+    @NotBlank @Size(max = 220) String direccion,
+    @NotNull @Positive @Digits(integer = 12, fraction = 2) BigDecimal precio,
+    @NotNull @PositiveOrZero Integer habitaciones,
+    @NotNull @PositiveOrZero Integer banos,
+    @NotNull @Positive @Digits(integer = 8, fraction = 2) BigDecimal areaM2,
+    @NotNull TipoOperacion tipoOperacion,
+    @NotNull EstadoPropiedad estado,
+    @Positive Long agenteId,
+    @Size(max = 500) String imagenPrincipalUrl) {}
