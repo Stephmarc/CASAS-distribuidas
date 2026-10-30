@@ -87,5 +87,5 @@ Para detener además sus contenedores: `& ".\scripts\stop-complete.ps1" -StopInf
 
 ## Material para presentar S12
 
-La entrega incluye ntrega/CASAS-Sustentacion-Unidad2-Final.pptx y ntrega/CASAS-Guia-Sustentacion.md. El docente pide diapositivas, demo en vivo, video pitch y defensa individual. El producto escrito está publicado en MkDocs. El equipo debe grabar el pitch y confirmar el reparto según sus aportes reales.
+La entrega incluye entrega/CASAS-Sustentacion-Unidad2-Final.pptx y entrega/CASAS-Guia-Sustentacion.md. El docente pide diapositivas, demo en vivo, video pitch y defensa individual. El producto escrito está publicado en MkDocs. El equipo debe grabar el pitch y confirmar el reparto según sus aportes reales.
 
