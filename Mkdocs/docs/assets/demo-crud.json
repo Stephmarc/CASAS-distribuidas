@@ -1,0 +1,41 @@
+{
+  "pasos": [
+    {
+      "precio": 350000,
+      "operacion": "CREATE",
+      "method": "POST",
+      "id": 24,
+      "status": 201
+    },
+    {
+      "precio": 350000.0,
+      "operacion": "READ",
+      "method": "GET",
+      "id": 24,
+      "status": 200
+    },
+    {
+      "precio": 365000.0,
+      "operacion": "UPDATE",
+      "method": "PUT",
+      "id": 24,
+      "status": 200
+    },
+    {
+      "operacion": "DELETE",
+      "method": "DELETE",
+      "id": 24,
+      "status": 204
+    },
+    {
+      "operacion": "VERIFY_DELETED",
+      "method": "GET",
+      "id": 24,
+      "status": 404
+    }
+  ],
+  "registroExclusivoDePrueba": true,
+  "resultado": "PASS",
+  "fecha": "2026-10-30T13:09:46.7871233Z",
+  "gateway": "http://localhost:28080/api/v1/propiedades"
+}

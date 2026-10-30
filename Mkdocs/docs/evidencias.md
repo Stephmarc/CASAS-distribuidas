@@ -145,3 +145,11 @@ Esta tabla se genera a partir del JSON de la prueba real, no de estados escritos
 | 28109 | 401 | 403 |
 
 [JSON original de seguridad](assets/seguridad-servicios.json) · [salida real de Maven](assets/maven-verify.txt). Las salidas son archivos reales de ejecución; no se presentan como capturas de una ventana CMD que no se haya fotografiado.
+
+## CRUD completo ejecutado
+
+Se ejecutó `scripts/demo-crud.ps1` por Gateway con un registro nuevo exclusivo: crear 201, consultar 200, actualizar 200, eliminar 204 y consulta posterior 404. El precio pasó de 350000 a 365000 antes de eliminar solo ese registro. [Reporte original](assets/demo-crud.json).
+
+Para demostrarlo por pasos: `& .\scripts\demo-crud.ps1 -PasoAPaso`. La interfaz actual permite crear y consultar viviendas; PUT y DELETE se muestran por API, sin atribuir botones que no existen en el frontend.
+
+Para consultar datos de negocio protegidos sin proyectar el token: `& .\scripts\ver-backend.ps1 -Entidad reservas` (también ordenes, pagos y contratos).
