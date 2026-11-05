@@ -1,7 +1,15 @@
+server:
+  port: 18761
+
 spring:
   application:
     name: casa-eureka
-  profiles:
-    active: dev
   config:
-    import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:18888}"
+    import: optional:configserver:http://localhost:18888
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:18761/eureka/
