@@ -1,6 +1,6 @@
 # Guion y demo · Jannys y Alanguia
 
-Presentar solo las diapositivas 1–6. Las 7–13 son apoyo para la demo o preguntas. Olger permanece como integrante del grupo; exponen Jannys y Miguel Angel Alanguia. Este reparto organiza la exposición y no atribuye contribuciones personales no verificadas.
+Presentar solo las diapositivas 1–6. Las 7–13 son apoyo para la demo o preguntas. El grupo está formado por dos integrantes y exponen ambos: Jannys y Miguel Angel Alanguia. Este reparto organiza la exposición y no atribuye contribuciones personales no verificadas.
 
 ## Pantallas que deben abrir
 

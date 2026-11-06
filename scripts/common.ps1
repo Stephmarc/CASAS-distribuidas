@@ -21,6 +21,9 @@ function Start-CasaProcess([string]$Root,[string]$Module,[int]$Port,[string]$Jav
  if(-not $jar){throw "Falta el JAR de $Module. Ejecute la compilacion."}
  $heap=if($env:CASA_JAVA_MAX_HEAP){$env:CASA_JAVA_MAX_HEAP}else{'256m'}
  if($heap -notmatch '^[1-9][0-9]*[mMgG]$'){throw 'CASA_JAVA_MAX_HEAP debe indicar memoria como 256m o 512m.'}
+ # Windows PowerShell 5.1 falla si el entorno trae variables que solo difieren en mayusculas (ComSpec y COMSPEC)
+ $envAll=[Environment]::GetEnvironmentVariables('Process')
+ foreach($grp in @($envAll.Keys|Group-Object {$_.ToUpperInvariant()}|Where-Object {$_.Count -gt 1})){$keep=$grp.Group[0];$val=$envAll[$keep];[Environment]::SetEnvironmentVariable($keep,$null,'Process');[Environment]::SetEnvironmentVariable($keep,$val,'Process')}
  $name=Split-Path -Leaf $Module
  $p=Start-Process -FilePath $JavaExe -ArgumentList @('-Xms64m',"-Xmx$heap",'-XX:+ExitOnOutOfMemoryError','-jar',('"'+$jar.FullName+'"')) -WorkingDirectory $Root -WindowStyle Hidden -RedirectStandardOutput "$Root/.run/$name.out.log" -RedirectStandardError "$Root/.run/$name.err.log" -PassThru
  return $p

@@ -11,6 +11,7 @@ $entries=@($entries|Where-Object {$_.name -ne $Name})
 Save-CasaProcesses $root $entries
 $names=@('cliente-ms','propiedad-ms','agente-ms','visita-ms','reserva-ms','orden-ms','pago-ms','contrato-ms','notificacion-ms')
 $port=if($Name -eq 'casa-config'){28888}elseif($Name -eq 'casa-eureka'){28761}elseif($Name -eq 'casa-gateway'){28080}else{28101+[array]::IndexOf($names,$Name)}
+$wait=0;while((Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue) -and $wait -lt 30){Start-Sleep -Seconds 1;$wait++}
 if(Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue){throw "El puerto $port sigue ocupado por otro proceso."}
 $module=if($Name.StartsWith('casa-')){"infra/$Name"}else{"services/$Name"}
 $process=Start-CasaProcess $root $module $port $javaExe

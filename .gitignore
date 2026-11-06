@@ -19,3 +19,6 @@ frontend/compiled/
 frontend/dist/
 **/classpath.txt
 .tools/
+
+# Archivos temporales de Office
+~$*
