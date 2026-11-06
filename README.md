@@ -35,3 +35,11 @@ El primer arranque descarga dependencias, ejecuta las pruebas y construye el fro
 - [Publicar](Mkdocs/docs/ejecucion.md#subir-y-publicar-mkdocs): `scripts/publish.ps1`.
 
 El backend estabilizado aportado por el equipo se incorpora conservando paquetes y migraciones. Las guías históricas de estabilización permanecen en `docs/`; las páginas de MkDocs documentan la entrega actual. Ninguna prueba automática sustituye el video pitch ni la defensa personal.
+
+
+APP_DNI_TOKEN=sk_21452.BQb5uz5pePwI3hInzkJG8bh5WpbKJjK2
+APP_MAIL_HOST=smtp.gmail.com
+APP_MAIL_PORT=587
+APP_MAIL_USER=tucorreo@gmail.com
+APP_MAIL_PASSWORD=abcdefghijklmnop
+APP_MAIL_FROM=CASAS <tucorreo@gmail.com>
