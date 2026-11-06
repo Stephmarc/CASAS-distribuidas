@@ -4,7 +4,7 @@ $root=Split-Path -Parent $PSScriptRoot
 . "$PSScriptRoot/common.ps1"
 Import-CasaEnvironment $root
 $javaExe=Get-CasaJava
-$entries=@(Get-Content "$root/.run/processes.json" -Raw|ConvertFrom-Json)
+$entries=@(Get-Content "$root/.run/processes.json" -Raw|ConvertFrom-Json|ForEach-Object {$_})
 $old=$entries|Where-Object {$_.name -eq $Name}
 foreach($entry in $old){$p=Get-Process -Id $entry.id -ErrorAction SilentlyContinue;if($p -and $p.ProcessName -eq 'java' -and $p.StartTime.ToUniversalTime() -eq ([datetime]$entry.started).ToUniversalTime()){Stop-Process -Id $p.Id;Wait-Process -Id $p.Id -Timeout 30 -ErrorAction SilentlyContinue}}
 $entries=@($entries|Where-Object {$_.name -ne $Name})

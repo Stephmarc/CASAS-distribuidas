@@ -21,6 +21,8 @@ public class SecurityConfig {
     .requestMatchers("/api/v1/operaciones/**").hasRole("ADMIN")
     .requestMatchers("/actuator/**").hasRole("ADMIN")
 
+    .requestMatchers(HttpMethod.POST,"/api/v1/clientes/registro").permitAll()
+    .requestMatchers(HttpMethod.GET,"/api/v1/clientes/dni/*").permitAll()
     .requestMatchers(HttpMethod.GET,"/api/v1/clientes/**").hasAnyRole("CLIENTE","AGENTE","ADMIN")
     .requestMatchers(HttpMethod.POST,"/api/v1/clientes").hasAnyRole("ADMIN")
     .requestMatchers("/api/v1/clientes/**").hasRole("ADMIN").anyRequest().denyAll())

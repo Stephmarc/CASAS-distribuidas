@@ -90,6 +90,15 @@ services:
       - "127.0.0.1:28090:8080"
     volumes:
       - ./infra/keycloak:/opt/keycloak/data/import:ro
+      - ./infra/keycloak/themes/casas:/opt/keycloak/themes/casas:ro
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    container_name: casa-o-nada-mailpit-dev
+    ports:
+      - "127.0.0.1:28025:8025"
+      - "127.0.0.1:21025:1025"
+    restart: unless-stopped
 
   kafka-ui:
     image: ghcr.io/kafbat/kafka-ui:v1.5.0

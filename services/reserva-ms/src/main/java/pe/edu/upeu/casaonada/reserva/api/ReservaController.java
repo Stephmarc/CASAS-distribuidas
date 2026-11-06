@@ -16,14 +16,27 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upeu.casaonada.reserva.domain.EstadoReserva;
 import pe.edu.upeu.casaonada.reserva.dto.*;
 import pe.edu.upeu.casaonada.reserva.service.ReservaService;
+import pe.edu.upeu.casaonada.shared.EmailTemplates;
+import pe.edu.upeu.casaonada.shared.Mailer;
+import org.springframework.beans.factory.annotation.Value;
 
 @RestController
 @RequestMapping("/api/v1/reservas")
 public class ReservaController {
   private final ReservaService service;
   private final CircuitBreakerRegistry circuitBreakerRegistry;
+  private final Mailer mailer;
 
-  public ReservaController(ReservaService service, CircuitBreakerRegistry circuitBreakerRegistry) {
+  public ReservaController(
+      ReservaService service,
+      CircuitBreakerRegistry circuitBreakerRegistry,
+      @Value("${app.mail.host:localhost}") String mailHost,
+      @Value("${app.mail.port:21025}") int mailPort,
+      @Value("${app.mail.user:}") String mailUser,
+      @Value("${app.mail.password:}") String mailPass,
+      @Value("${app.mail.from:CASAS <no-reply@casas.example>}") String mailFrom,
+      @Value("${app.mail.enabled:true}") boolean mailOn) {
+    this.mailer = new Mailer(mailHost, mailPort, mailUser, mailPass, mailFrom, mailOn);
     this.service = service;
     this.circuitBreakerRegistry = circuitBreakerRegistry;
   }
@@ -40,6 +53,7 @@ public class ReservaController {
             request.montoReserva(),
             request.estado());
     var creada = service.crear(normalizada);
+    enviarCorreo(jwt, creada);
     return ResponseEntity.created(URI.create("/api/v1/reservas/" + creada.id())).body(creada);
   }
 
@@ -98,6 +112,30 @@ public class ReservaController {
     result.put("successfulCalls", metrics.getNumberOfSuccessfulCalls());
     result.put("notPermittedCalls", metrics.getNumberOfNotPermittedCalls());
     return result;
+  }
+
+  /** Correo de confirmacion al cliente que reservo por su cuenta (usa el correo de su sesion). */
+  private void enviarCorreo(Jwt jwt, ReservaResponse r) {
+    try {
+      if (jwt == null || !hasRole(jwt, "CLIENTE")) return;
+      String email = jwt.getClaimAsString("email");
+      if (email == null || email.isBlank()) return;
+      String nombre = jwt.getClaimAsString("given_name");
+      var p = service.propiedadParaCorreo(r.propiedadId());
+      mailer.send(
+          email,
+          "Tu reserva #" + r.id() + " en CASAS",
+          EmailTemplates.reserva(
+              nombre == null ? "cliente" : nombre,
+              p == null ? "Inmueble N.º " + r.propiedadId() : p.titulo(),
+              p == null ? "" : p.ciudad(),
+              r.montoReserva(),
+              r.fechaExpiracion(),
+              r.id(),
+              p != null && "ALQUILER".equalsIgnoreCase(p.tipoOperacion())));
+    } catch (RuntimeException ignored) {
+      // el correo es informativo; nunca debe impedir la reserva
+    }
   }
 
   private Long effectiveClienteId(Jwt jwt, Long requestedClienteId) {

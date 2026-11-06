@@ -3,7 +3,7 @@ $ErrorActionPreference='Stop'
 $projectRoot=Split-Path -Parent $PSScriptRoot
 $pidFile=Join-Path $projectRoot '.run/processes.json'
 if(Test-Path -LiteralPath $pidFile){
- foreach($entry in @(Get-Content -LiteralPath $pidFile -Raw | ConvertFrom-Json)){
+ foreach($entry in @(Get-Content -LiteralPath $pidFile -Raw | ConvertFrom-Json|ForEach-Object {$_})){
   $p=Get-Process -Id $entry.id -ErrorAction SilentlyContinue
   if($p -and $p.ProcessName -eq 'java' -and $p.StartTime.ToUniversalTime() -eq ([datetime]$entry.started).ToUniversalTime()){Stop-Process -Id $p.Id}
  }

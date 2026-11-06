@@ -33,7 +33,7 @@ El inicio completo carga nueve inmuebles con fotos automáticamente. Para repeti
 & ".\scripts\seed-demo.ps1"
 ```
 
-Para aprobar o rechazar un pago simulado, entra como administrador y abre Gestión → Pagos de prueba. Los pagos no mueven dinero. Grafana está en `http://localhost:23000`: usuario `admin`, clave `casas-demo-local`.
+Para revisar un pago, entra como agente (o administrador) y abre Pagos: verás la captura y podrás aprobar, pedir otra o rechazar. Los pagos no mueven dinero. Grafana está en `http://localhost:23000`: usuario `admin`, clave `casas-demo-local`.
 
 ## 2. Repetir las comprobaciones
 
@@ -89,3 +89,11 @@ Para detener además sus contenedores: `& ".\scripts\stop-complete.ps1" -StopInf
 
 La entrega incluye entrega/CASAS-Sustentacion-Unidad2-Final.pptx y entrega/CASAS-Guia-Sustentacion.md. El docente pide diapositivas, demo en vivo, video pitch y defensa individual. El producto escrito está publicado en MkDocs. El equipo debe grabar el pitch y confirmar el reparto según sus aportes reales.
 
+## Novedades de esta versión
+
+- **Flujo realista:** reserva de 24 h → pago con Yape/Plin/transferencia + captura → un agente aprueba, pide otra captura o rechaza → el agente envía el contrato → el cliente lo acepta → el agente lo activa.
+- **Registro con DNI:** el cliente se registra al reservar. Para autocompletar nombres por DNI crea un token gratis en https://apis.net.pe y ponlo en el archivo `.env` como `APP_DNI_TOKEN=tu_token` (ver `.env.example`). Sin token, el cliente escribe sus datos a mano.
+- **Correos:** bienvenida, confirmación de reserva y acceso de agente. En local se ven en **Mailpit: http://localhost:28025**. Para correos reales configura `APP_MAIL_*` en `.env` (ejemplo con Gmail en `.env.example`).
+- **Admin:** crea agentes con acceso, activa/desactiva agentes y clientes, supervisa todo y exporta CSV.
+- **Login con la marca CASAS** (tema de Keycloak en `infra/keycloak/themes/casas`).
+- Datos de cobro de ejemplo (Yape/Plin/BCP): cámbialos en `frontend/src/core.ts` (`COBRO`).

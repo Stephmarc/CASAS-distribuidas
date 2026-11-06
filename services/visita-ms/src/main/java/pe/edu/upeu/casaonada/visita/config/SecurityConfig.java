@@ -50,7 +50,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api/v1/visitas/**")
                     .hasAnyRole("CLIENTE", "AGENTE", "ADMIN")
                     .requestMatchers(HttpMethod.POST, "/api/v1/visitas")
-                    .hasAnyRole("CLIENTE", "ADMIN")
+                    .hasAnyRole("CLIENTE","AGENTE","ADMIN")
                     .requestMatchers("/api/v1/visitas/**")
                     .hasRole("ADMIN")
                     .anyRequest()

@@ -2,6 +2,7 @@
   "realm": "casa-o-nada",
   "enabled": true,
   "displayName": "CASA O NADA",
+  "loginTheme": "casas",
   "registrationAllowed": false,
   "roles": {
     "realm": [

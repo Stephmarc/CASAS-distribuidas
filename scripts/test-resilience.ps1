@@ -2,7 +2,7 @@
 $root=Split-Path -Parent $PSScriptRoot
 node "$root/validation/resilience.mjs" prepare
 if($LASTEXITCODE -ne 0){throw 'No se pudo preparar el caso.'}
-$entry=@(Get-Content "$root/.run/processes.json" -Raw|ConvertFrom-Json)|Where-Object {$_.name -eq 'propiedad-ms'}|Select-Object -First 1
+$entry=@(Get-Content "$root/.run/processes.json" -Raw|ConvertFrom-Json|ForEach-Object {$_})|Where-Object {$_.name -eq 'propiedad-ms'}|Select-Object -First 1
 if(-not $entry){throw 'Inicie el proyecto con start-complete.ps1 para identificar su proceso.'}
 $p=Get-Process -Id $entry.id -ErrorAction Stop
 if($p.ProcessName -ne 'java' -or $p.StartTime.ToUniversalTime() -ne ([datetime]$entry.started).ToUniversalTime()){throw 'El PID no coincide con el proceso registrado de este proyecto.'}

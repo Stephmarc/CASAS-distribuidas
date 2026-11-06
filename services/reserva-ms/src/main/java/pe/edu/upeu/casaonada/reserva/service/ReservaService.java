@@ -55,6 +55,15 @@ public class ReservaService {
     return mapper.toResponse(repo.save(entidad));
   }
 
+  /** Datos del inmueble para el correo de confirmacion; null si el catalogo no responde. */
+  public PropiedadDto propiedadParaCorreo(Long id) {
+    try {
+      return propiedadIntegration.validarReservable(id);
+    } catch (RuntimeException e) {
+      return null;
+    }
+  }
+
   @Transactional(readOnly = true)
   public List<ReservaResponse> listar() {
     return repo.findAll().stream().map(mapper::toResponse).toList();

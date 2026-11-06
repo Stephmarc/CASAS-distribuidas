@@ -12,13 +12,13 @@ $names=@('cliente','propiedad','agente','visita','reserva','orden','pago','contr
 for($i=0;$i -lt $names.Count;$i++){$modules+=@{path="services/$($names[$i])-ms";port=(28101+$i)}}
 $modules+=@{path='infra/casa-gateway';port=28080}
 foreach($m in $modules){if(Get-NetTCPConnection -LocalPort $m.port -State Listen -ErrorAction SilentlyContinue){throw "Puerto $($m.port) ocupado. Detenga la version anterior con scripts/stop-u2.ps1."}}
-if(Test-Path .run/processes.json){foreach($entry in @(Get-Content .run/processes.json -Raw|ConvertFrom-Json)){if(Get-Process -Id $entry.id -ErrorAction SilentlyContinue){throw 'Hay procesos registrados del inicio anterior. Ejecute scripts/stop-u2.ps1 antes de iniciar.'}}}
+if(Test-Path .run/processes.json){foreach($entry in @(Get-Content .run/processes.json -Raw|ConvertFrom-Json|ForEach-Object {$_})){if(Get-Process -Id $entry.id -ErrorAction SilentlyContinue){throw 'Hay procesos registrados del inicio anterior. Ejecute scripts/stop-u2.ps1 antes de iniciar.'}}}
 if(-not $SkipBuild){& .\mvnw.cmd -B -ntp clean verify;if($LASTEXITCODE -ne 0){throw 'La compilacion o las pruebas fallaron; no se iniciaron aplicaciones.'}}
 docker compose -f compose-dev.yml up -d --wait postgres kafka
 if($LASTEXITCODE -ne 0){throw 'PostgreSQL o Kafka no estan listos.'}
 docker compose -f compose-dev.yml run --rm db-init
 if($LASTEXITCODE -ne 0){throw 'No se pudieron crear las bases de datos.'}
-docker compose -f compose-dev.yml up -d keycloak
+docker compose -f compose-dev.yml up -d mailpit keycloak
 if($LASTEXITCODE -ne 0){throw 'Keycloak no pudo iniciar.'}
 Wait-CasaHttp 'http://localhost:28090/realms/casa-o-nada/.well-known/openid-configuration'
 & "$PSScriptRoot/sync-keycloak.ps1"

@@ -49,6 +49,6 @@ El reinicio por servicio actualiza el registro de procesos. Así, el script de p
 
 ## Pagos y datos de desarrollo
 
-Por defecto se utiliza SANDBOX_LOCAL. La simulación de aprobación o rechazo solo está habilitada para ADMIN. Para cambiar al proveedor externo, configure MERCADOPAGO_ENABLED=true, PAGOS_SANDBOX_ENABLED=false y su token de prueba. El arranque rechaza tener ambos modos activos o ambos desactivados.
+Por defecto se utiliza SANDBOX_LOCAL. La revisión del pago (aprobar, observar o rechazar con la captura) está habilitada para AGENTE y ADMIN; la simulación directa solo para ADMIN. Para cambiar al proveedor externo, configure MERCADOPAGO_ENABLED=true, PAGOS_SANDBOX_ENABLED=false y su token de prueba. El arranque rechaza tener ambos modos activos o ambos desactivados.
 
 El realm y los usuarios de demostración de Keycloak se mantienen. Esta configuración continúa siendo de desarrollo local; antes de recrear o sustituir un Keycloak personalizado, preserve también sus usuarios y configuración. Los respaldos SQL de la aplicación no incluyen la base interna de Keycloak.

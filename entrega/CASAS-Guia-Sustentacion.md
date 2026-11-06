@@ -83,9 +83,9 @@ El frontend actual ofrece creación y consulta; actualización y eliminación se
 
 ### C. Reserva y operación
 
-Entrar como CLIENTE en otra sesión. Elegir vivienda DISPONIBLE, reservar y abrir Mi espacio. Esperar ESPERANDO_PAGO y registrar el adelanto. ADMIN → Gestión → Pagos de prueba → aprobar la simulación de esa orden. Volver al cliente y mostrar CONFIRMADA, contrato y notificación.
+Entrar como CLIENTE (o registrarse con DNI) en otra sesión. Elegir vivienda DISPONIBLE, responder si desea una visita previa y confirmar la reserva (dura 24 horas; llega un correo a Mailpit, http://localhost:28025). En Mi espacio pulsar «Pagar adelanto», elegir Yape, Plin o transferencia, escribir el número de operación y subir la captura. Entrar como AGENTE → Pagos → Ver captura → aprobar (también puede pedir otra captura o rechazar con motivo). Volver al cliente: la operación avanza a CONFIRMADA; el agente envía el contrato desde Contratos, el cliente lo acepta y el agente lo activa.
 
-“La reserva no confirma inmediatamente toda la operación. Cada servicio realiza su paso y la saga avanza hasta completar el cierre. Este pago es una simulación local y no mueve dinero.”
+“La reserva no confirma inmediatamente toda la operación. Cada servicio realiza su paso y la saga avanza hasta completar el cierre. El pago es manual y lo valida un agente con la captura; en este entorno académico no se mueve dinero real.”
 
 Para mostrar en backend los registros protegidos, usar lecturas autenticadas que no imprimen el token:
 

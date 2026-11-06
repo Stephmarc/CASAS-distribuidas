@@ -14,7 +14,7 @@ for($i=0;$i -lt 2;$i++){
  $agentIds+=([long]$found.id)
 }
 $existing=@(Invoke-RestMethod "$Gateway/api/v1/propiedades" -Headers $h -TimeoutSec 25 | ForEach-Object {$_})
-$items=@(Get-Content -LiteralPath "$root/data/demo-propiedades.json" -Raw -Encoding UTF8|ConvertFrom-Json)
+$items=@(Get-Content -LiteralPath "$root/data/demo-propiedades.json" -Raw -Encoding UTF8|ConvertFrom-Json|ForEach-Object {$_})
 $created=0
 foreach($item in $items){
  if(@($existing|Where-Object {$_.titulo -eq $item.titulo}).Count){continue}

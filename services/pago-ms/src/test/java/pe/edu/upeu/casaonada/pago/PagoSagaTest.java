@@ -40,7 +40,15 @@ class PagoSagaTest {
     em = mock(jakarta.persistence.EntityManager.class);
     service =
         new PagoService(
-            repo, provider, consultas, guard, outbox, true, em, mock(IdempotencyLocks.class));
+            repo,
+            provider,
+            consultas,
+            guard,
+            outbox,
+            true,
+            em,
+            mock(IdempotencyLocks.class),
+            mock(pe.edu.upeu.casaonada.pago.repository.PagoComprobanteRepository.class));
     event =
         new OperacionEvent(
             "event",

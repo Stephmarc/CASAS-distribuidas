@@ -184,4 +184,48 @@ public class Pago {
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
+
+  @Column(length = 20)
+  private String metodo;
+
+  @Column(name = "nro_operacion", length = 40)
+  private String nroOperacion;
+
+  @Column(name = "comprobante_at")
+  private OffsetDateTime comprobanteAt;
+
+  @Column(name = "motivo_revision", length = 200)
+  private String motivoRevision;
+
+  public String getMetodo() {
+    return metodo;
+  }
+
+  public void setMetodo(String v) {
+    metodo = v;
+  }
+
+  public String getNroOperacion() {
+    return nroOperacion;
+  }
+
+  public void setNroOperacion(String v) {
+    nroOperacion = v;
+  }
+
+  public OffsetDateTime getComprobanteAt() {
+    return comprobanteAt;
+  }
+
+  public void setComprobanteAt(OffsetDateTime v) {
+    comprobanteAt = v;
+  }
+
+  public String getMotivoRevision() {
+    return motivoRevision;
+  }
+
+  public void setMotivoRevision(String v) {
+    motivoRevision = v;
+  }
 }

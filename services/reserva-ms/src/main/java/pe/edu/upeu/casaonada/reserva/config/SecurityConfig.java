@@ -22,7 +22,7 @@ public class SecurityConfig {
     .requestMatchers("/actuator/**").hasRole("ADMIN")
      .requestMatchers(HttpMethod.POST,"/api/v1/reservas/*/cancelar").hasAnyRole("CLIENTE","ADMIN")
     .requestMatchers(HttpMethod.GET,"/api/v1/reservas/**").hasAnyRole("CLIENTE","AGENTE","ADMIN")
-    .requestMatchers(HttpMethod.POST,"/api/v1/reservas").hasAnyRole("CLIENTE","ADMIN")
+    .requestMatchers(HttpMethod.POST,"/api/v1/reservas").hasAnyRole("CLIENTE","AGENTE","ADMIN")
     .requestMatchers("/api/v1/reservas/**").hasRole("ADMIN").anyRequest().denyAll())
    .oauth2ResourceServer(o->o.jwt(j->j.jwtAuthenticationConverter(converter))).build();
  }

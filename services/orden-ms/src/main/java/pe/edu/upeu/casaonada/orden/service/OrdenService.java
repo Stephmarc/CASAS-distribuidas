@@ -106,7 +106,7 @@ public class OrdenService {
     if (change.estado() == o.estado) return;
     o.estado = change.estado();
     o.updatedAt = OffsetDateTime.now();
-    o.deadline = o.updatedAt.plusMinutes(o.estado == EstadoOrden.ESPERANDO_PAGO ? 30 : 2);
+    o.deadline = o.updatedAt.plusMinutes(o.estado == EstadoOrden.ESPERANDO_PAGO ? 1440 : 2);
     if (!o.estado.compensando()) o.deadline = earlier(o.deadline, o.reservaExpiraAt);
     if (o.estado.compensando()) o.motivo = motivo;
     repo.save(o);

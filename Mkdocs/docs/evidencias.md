@@ -33,6 +33,23 @@ Se recuperó Docker Desktop conservando volúmenes, se arrancó el Compose propi
 
 Después del ajuste de búsqueda y del reintento de lectura se volvieron a compilar propiedad y reserva y se repitieron sus siete pruebas unitarias, sin fallos. La caída real se volvió a verificar con esa configuración.
 
+## Verificación de la versión con pago manual (5 de noviembre de 2026)
+
+Sobre los contenedores reales (Docker, Keycloak, Kafka, PostgreSQL) se repitieron las pruebas después de añadir el pago con captura, la revisión por el agente, el registro con DNI, los correos y el alta de agentes.
+
+| Comprobación | Resultado |
+|---|---|
+| Maven `clean verify` | BUILD SUCCESS en los 14 proyectos |
+| JUnit | **91 pruebas, 0 fallos** (78 anteriores + 13 nuevas de `PagoManualTest`: captura, métodos, límites, aprobar, observar, rechazar) |
+| HTTP de negocio y estabilidad (`test-stability.ps1`) | **50 comprobaciones PASS, 0 FAIL** |
+| JWT directo a los nueve servicios (`test-distributed-security.ps1`) | JWT requerido en los nueve |
+| Reenvío del mismo evento Kafka (`test-replay.ps1`) | PASS: un solo contrato antes y después, duplicado reconocido |
+| Caída real de propiedad (`test-resilience.ps1`) | PASS: CLOSED → OPEN → HALF_OPEN → CLOSED |
+| Flujo completo por API | registro → reserva → pago observado → nueva captura → aprobado → contrato enviado, aceptado y activado; alta y baja de agente; correos recibidos en Mailpit |
+| Servicio externo real | Geocodificación de Juliaca, Cusco, Arequipa y Lima con Open-Meteo / GeoNames, visible en la ficha del inmueble |
+
+Límites: Mercado Pago real, la consulta automática de DNI (requiere token de apis.net.pe) y el envío a un correo real (requiere SMTP) no se ejecutaron en este entorno.
+
 ## Cliente Angular
 
 La portada adapta el prototipo aportado por el equipo. La ilustración es propia del proyecto; no representa una fotografía ni acredita un inmueble real.

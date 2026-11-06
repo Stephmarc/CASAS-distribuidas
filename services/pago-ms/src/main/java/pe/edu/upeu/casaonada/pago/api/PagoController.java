@@ -45,6 +45,37 @@ public class PagoController {
 
   public record Simulacion(EstadoPago estado) {}
 
+  public record ComprobanteRequest(
+      @jakarta.validation.constraints.NotBlank String metodo,
+      @jakarta.validation.constraints.NotBlank String nroOperacion,
+      @jakarta.validation.constraints.NotBlank String tipo,
+      @jakarta.validation.constraints.NotBlank String datos) {}
+
+  public record Revision(String accion, String motivo) {}
+
+  @PostMapping("/{id}/comprobante")
+  public PagoResponse comprobante(@PathVariable Long id, @Valid @RequestBody ComprobanteRequest r) {
+    byte[] bytes;
+    try {
+      bytes = Base64.getDecoder().decode(r.datos());
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException("Captura invalida");
+    }
+    return s.comprobante(id, r.metodo(), r.nroOperacion(), r.tipo(), bytes);
+  }
+
+  @GetMapping("/{id}/comprobante")
+  public ResponseEntity<byte[]> verComprobante(@PathVariable Long id) {
+    var c = s.verComprobante(id);
+    return ResponseEntity.ok().contentType(MediaType.parseMediaType(c.tipo())).body(c.datos());
+  }
+
+  @PostMapping("/{id}/revisar")
+  @PreAuthorize("hasAnyRole('AGENTE','ADMIN')")
+  public PagoResponse revisar(@PathVariable Long id, @RequestBody Revision r) {
+    return s.revisar(id, r.accion(), r.motivo());
+  }
+
   @PostMapping("/{id}/simular")
   @PreAuthorize("hasRole('ADMIN')")
   public PagoResponse simular(@PathVariable Long id, @RequestBody Simulacion r) {

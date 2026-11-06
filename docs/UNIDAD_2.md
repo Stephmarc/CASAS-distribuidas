@@ -18,7 +18,7 @@ Para observar el circuito, use el endpoint autenticado `/api/v1/reservas/_circui
 
 Keycloak emite JWT. Gateway y cada servicio verifican firma mediante JWK y el emisor configurado. Los roles se obtienen de realm_access.roles. No existe un interruptor que abra toda la API sin autenticación.
 
-CLIENTE usa su claim cliente_id para crear y consultar sus operaciones; no puede elegir otro cliente enviando un ID en el cuerpo. ADMIN administra perfiles, simulación y operaciones técnicas. AGENTE consulta operaciones y mantiene el catálogo según los permisos de la API. El acceso por roles se complementa con controles de pertenencia en visitas, reservas, órdenes, pagos, contratos y notificaciones.
+CLIENTE usa su claim cliente_id para crear y consultar sus operaciones; no puede elegir otro cliente enviando un ID en el cuerpo. ADMIN administra perfiles, usuarios (alta y baja de agentes y clientes), operaciones y herramientas técnicas; ADMIN y AGENTE revisan los pagos. AGENTE consulta operaciones y mantiene el catálogo según los permisos de la API. El acceso por roles se complementa con controles de pertenencia en visitas, reservas, órdenes, pagos, contratos y notificaciones.
 
 Gateway no sustituye la validación en los servicios: acceder a un puerto interno requiere el mismo JWT. Las interfaces de documentación y health son públicas en DEV; los endpoints técnicos y de recuperación requieren ADMIN.
 
@@ -38,13 +38,13 @@ El consumidor aplica inbox, cambios de dominio y respuesta outbox en la misma tr
 |---|---|---|
 | VALIDANDO_RESERVA | ASOCIAR_RESERVA | RESERVA_ASOCIADA |
 | BLOQUEANDO | BLOQUEAR_PROPIEDAD | PROPIEDAD_BLOQUEADA |
-| ESPERANDO_PAGO | Cliente crea pago; proveedor o simulador lo resuelve | PAGO_APROBADO |
+| ESPERANDO_PAGO | Cliente crea el pago y sube la captura (Yape, Plin, transferencia o depósito); un agente la verifica: aprobar, pedir otra captura (el pago sigue pendiente) o rechazar (cancela la operación) | PAGO_APROBADO |
 | GENERANDO_CONTRATO | CREAR_CONTRATO | CONTRATO_GENERADO |
 | CONFIRMANDO_PROPIEDAD | CONFIRMAR_PROPIEDAD | PROPIEDAD_CONFIRMADA |
 | CONVIRTIENDO_RESERVA | CONVERTIR_RESERVA | RESERVA_CONVERTIDA |
 | CONFIRMADA | ORDEN_CONFIRMADA | Aviso persistente |
 
-La orden espera dos minutos en etapas técnicas y treinta en espera de pago. El planificador comprueba los plazos cada treinta segundos. El plazo de una orden nunca excede la expiración original de la reserva; las reservas vencidas sin orden pasan a EXPIRADA y liberan su exclusividad. El estado y deadline están en la base, por lo que un reinicio no elimina la operación.
+La orden espera dos minutos en etapas técnicas y veinticuatro horas en espera de pago, porque un agente revisa la captura manualmente. El planificador comprueba los plazos cada treinta segundos. El plazo de una orden nunca excede la expiración original de la reserva; las reservas vencidas sin orden pasan a EXPIRADA y liberan su exclusividad. El estado y deadline están en la base, por lo que un reinicio no elimina la operación.
 
 Ante rechazo, cancelación o plazo agotado:
 
@@ -58,7 +58,7 @@ Los participantes guardan cercos de cancelación para rechazar comandos tardíos
 
 ## Pagos y proveedor externo
 
-DEV habilita `SANDBOX_LOCAL`: POST /pagos crea PENDIENTE y solo ADMIN puede usar POST /pagos/{id}/simular con APROBADO o RECHAZADO. La simulación no modifica pagos de Mercado Pago.
+DEV habilita `SANDBOX_LOCAL` como pago manual verificado: POST /pagos crea PENDIENTE; el cliente propietario envía POST /pagos/{id}/comprobante (método, número de operación y captura PNG/JPG/WEBP de hasta 3 MB, guardada en `pago_comprobantes`); GET /pagos/{id}/comprobante permite verla al propietario, agente o administrador; y POST /pagos/{id}/revisar (AGENTE o ADMIN) acepta `APROBAR`, `OBSERVAR` (borra la captura y pide otra sin cancelar) o `RECHAZAR` (cancela la operación y activa las compensaciones). No se puede aprobar sin captura. El endpoint POST /pagos/{id}/simular (solo ADMIN) se conserva para las pruebas automáticas y no modifica pagos de Mercado Pago.
 
 Para probar la integración externa, utilice credenciales de prueba de Mercado Pago y configure `MERCADOPAGO_ENABLED=true`, `PAGOS_SANDBOX_ENABLED=false` y `MERCADOPAGO_ACCESS_TOKEN`. El código conserva Payments API: crea el pago con clave de idempotencia, consulta resultados pendientes cada treinta segundos y utiliza cancelación/reembolso del proveedor para compensar. No marca reembolsado si el proveedor no lo confirma. Esta integración externa no se ejecutó en el entorno de entrega.
 

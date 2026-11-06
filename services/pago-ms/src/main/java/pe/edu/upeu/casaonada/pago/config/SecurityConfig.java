@@ -23,6 +23,8 @@ public class SecurityConfig {
 
     .requestMatchers(HttpMethod.GET,"/api/v1/pagos/**").hasAnyRole("CLIENTE","AGENTE","ADMIN")
     .requestMatchers(HttpMethod.POST,"/api/v1/pagos").hasAnyRole("CLIENTE","ADMIN")
+    .requestMatchers(HttpMethod.POST,"/api/v1/pagos/*/comprobante").hasAnyRole("CLIENTE","ADMIN")
+    .requestMatchers(HttpMethod.POST,"/api/v1/pagos/*/revisar").hasAnyRole("AGENTE","ADMIN")
     .requestMatchers("/api/v1/pagos/**").hasRole("ADMIN").anyRequest().denyAll())
    .oauth2ResourceServer(o->o.jwt(j->j.jwtAuthenticationConverter(converter))).build();
  }

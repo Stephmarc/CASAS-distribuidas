@@ -23,6 +23,7 @@ public class PagoService {
   private final PagoSagaGuard guard;
   private final Outbox outbox;
   private final boolean sandbox;
+  private final pe.edu.upeu.casaonada.pago.repository.PagoComprobanteRepository comprobantes;
 
   public PagoService(
       PagoRepository r,
@@ -32,7 +33,9 @@ public class PagoService {
       Outbox o,
       @Value("${app.pagos.sandbox.enabled:false}") boolean s,
       jakarta.persistence.EntityManager e,
-      IdempotencyLocks l) {
+      IdempotencyLocks l,
+      pe.edu.upeu.casaonada.pago.repository.PagoComprobanteRepository cr) {
+    comprobantes = cr;
     em = e;
     locks = l;
     repo = r;
@@ -110,6 +113,80 @@ public class PagoService {
     if (p.getEstado() == estado) return map(p);
     if (p.getEstado() != EstadoPago.PENDIENTE) throw conflict("Pago ya resuelto");
     p.setEstado(estado);
+    repo.save(p);
+    emit(p, e);
+    return map(p);
+  }
+
+  public record Comprobante(String tipo, byte[] datos) {}
+
+  /** El cliente declara su pago (Yape, Plin, transferencia) y adjunta la captura. */
+  @Transactional
+  public PagoResponse comprobante(Long id, String metodo, String nro, String tipo, byte[] datos) {
+    var p = entidad(id);
+    Identidad.propietario(p.getClienteId());
+    if (!Set.of("YAPE", "PLIN", "TRANSFERENCIA", "DEPOSITO").contains(metodo))
+      throw new IllegalArgumentException("Metodo de pago invalido");
+    if (nro == null || !nro.matches("[A-Za-z0-9-]{4,40}"))
+      throw new IllegalArgumentException("Numero de operacion invalido");
+    if (!Set.of("image/png", "image/jpeg", "image/webp").contains(tipo))
+      throw new IllegalArgumentException("La captura debe ser PNG, JPG o WEBP");
+    if (datos.length == 0 || datos.length > 3 * 1024 * 1024)
+      throw new IllegalArgumentException("La captura debe pesar entre 1 byte y 3 MB");
+    var e = guard.context(p.getOrdenId());
+    if (guard.lock(e)) throw conflict("Saga cancelada");
+    em.refresh(p, jakarta.persistence.LockModeType.PESSIMISTIC_WRITE);
+    if (!p.getProveedor().equals("SANDBOX_LOCAL")) throw conflict("Solo aplica a pagos manuales");
+    if (p.getEstado() != EstadoPago.PENDIENTE) throw conflict("El pago ya fue resuelto");
+    var c = comprobantes.findById(id).orElseGet(PagoComprobante::new);
+    c.pagoId = id;
+    c.tipo = tipo;
+    c.datos = datos;
+    comprobantes.save(c);
+    p.setMetodo(metodo);
+    p.setNroOperacion(nro);
+    p.setComprobanteAt(java.time.OffsetDateTime.now());
+    p.setMotivoRevision(null);
+    repo.save(p);
+    return map(p);
+  }
+
+  @Transactional(readOnly = true)
+  public Comprobante verComprobante(Long id) {
+    buscar(id);
+    var c =
+        comprobantes
+            .findById(id)
+            .orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Sin comprobante"));
+    return new Comprobante(c.tipo, c.datos);
+  }
+
+  /** El agente (o admin) revisa la captura: APROBAR, OBSERVAR (pide otra captura) o RECHAZAR. */
+  @Transactional
+  public PagoResponse revisar(Long id, String accion, String motivo) {
+    var p = entidad(id);
+    var e = guard.context(p.getOrdenId());
+    if (guard.lock(e)) throw conflict("Saga cancelada");
+    em.refresh(p, jakarta.persistence.LockModeType.PESSIMISTIC_WRITE);
+    if (!p.getProveedor().equals("SANDBOX_LOCAL")) throw conflict("Solo aplica a pagos manuales");
+    if (p.getComprobanteAt() == null) throw conflict("El cliente aun no envio la captura");
+    if (p.getEstado() != EstadoPago.PENDIENTE) throw conflict("Pago ya resuelto");
+    if (!Set.of("APROBAR", "OBSERVAR", "RECHAZAR").contains(accion))
+      throw new IllegalArgumentException("Accion invalida");
+    var m = motivo == null ? "" : motivo.trim();
+    if (!accion.equals("APROBAR") && m.isEmpty())
+      throw new IllegalArgumentException("Indica el motivo");
+    p.setMotivoRevision(m.isEmpty() ? null : m.substring(0, Math.min(200, m.length())));
+    switch (accion) {
+      case "APROBAR" -> p.setEstado(EstadoPago.APROBADO);
+      case "RECHAZAR" -> p.setEstado(EstadoPago.RECHAZADO);
+      default -> {
+        // observado: el pago sigue pendiente y el cliente puede enviar otra captura
+        p.setComprobanteAt(null);
+        comprobantes.deleteById(id);
+      }
+    }
     repo.save(p);
     emit(p, e);
     return map(p);
@@ -248,6 +325,10 @@ public class PagoService {
         p.getIdempotencyKey(),
         p.getEstado(),
         p.getCreatedAt(),
-        p.getUpdatedAt());
+        p.getUpdatedAt(),
+        p.getMetodo(),
+        p.getNroOperacion(),
+        p.getComprobanteAt() != null,
+        p.getMotivoRevision());
   }
 }

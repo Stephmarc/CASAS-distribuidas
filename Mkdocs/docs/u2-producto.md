@@ -6,7 +6,7 @@
 
 CASA O NADA acompaña una operación inmobiliaria: propiedad → visita → reserva → orden → adelanto → contrato → aviso. Se ofrecen compra y alquiler en PEN. La aprobación del adelanto no basta por sí sola: la orden se confirma después de completar contrato, propiedad y reserva.
 
-La versión académica usa un simulador de pagos. Los contratos son registros de negocio; no realizan escritura pública, transferencia SUNARP ni firma digital. Las notificaciones permanecen en el sistema. El adaptador externo de Mercado Pago requiere credenciales y pruebas propias antes de usarse fuera del laboratorio.
+La versión académica usa pagos manuales (Yape, Plin, transferencia) validados por un agente a partir de la captura, sin pasarela real. Los contratos son registros de negocio; no realizan escritura pública, transferencia SUNARP ni firma digital. Las notificaciones permanecen en el sistema. El adaptador externo de Mercado Pago requiere credenciales y pruebas propias antes de usarse fuera del laboratorio.
 
 ## 1. Comunicación síncrona resiliente
 
