@@ -1,6 +1,6 @@
 # CASAS · CASA O NADA
 
-Plataforma inmobiliaria distribuida del Grupo 9: **Jannys Graciela Navarro Acrota, Olger Meza Rupa y Miguel Angel Alanguia Japura**.
+Plataforma inmobiliaria distribuida del Grupo 9: **Jannys Graciela Navarro Acrota y Miguel Angel Alanguia Japura**.
 
 Compra y alquiler con catálogo, visitas, reservas, órdenes, adelantos, contratos y notificaciones. Nueve servicios de negocio con bases separadas, Config Server, Eureka, Gateway, Keycloak, Kafka, outbox/inbox y saga orquestada. Frontend Angular con PKCE; Prometheus, Loki, Alloy y Grafana para diagnóstico.
 
