@@ -43,3 +43,9 @@ APP_MAIL_PORT=587
 APP_MAIL_USER=tucorreo@gmail.com
 APP_MAIL_PASSWORD=abcdefghijklmnop
 APP_MAIL_FROM=CASAS <tucorreo@gmail.com>
+
+
+
+
+powershell -ExecutionPolicy Bypass -File .\scripts\start-complete.ps1
+
